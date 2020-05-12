@@ -1,0 +1,24 @@
+version: '3.3'
+
+services:
+    traefik:
+        image: traefik:v1.7-alpine
+        restart: always
+        ports: 
+          - 80:80
+          - 443:443
+        volumes: 
+          - ./acme.json:/letsencrypt/acme.json
+          - ./traefik1.toml:/traefik.toml
+          - /var/run/docker.sock:/var/run/docker.sock
+        labels: 
+         - traefik.frontend.rule=Host:monitor.unixfree.org
+         - traefik.port=8080
+        networks: 
+          outside-network:
+          internal-network:
+networks:
+  internal-network:
+    internal: true
+  outside-network:
+    external: true

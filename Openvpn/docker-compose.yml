@@ -1,0 +1,11 @@
+version: '3.5'
+
+services:
+  vpn:
+     image: openvpn-alpine
+     container_name: openvpn
+     ports:
+      - "1194:1194/udp"
+     shm_size: 1G
+     privileged: true 
+     restart: always

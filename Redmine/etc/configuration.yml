@@ -1,0 +1,12 @@
+default:
+  email_delivery:
+      delivery_method: :smtp
+      smtp_settings:
+        enable_starttls_auto: true
+        address: "smtp.gmail.com"
+        port: 587
+        domain: "smtp.gmail.com" # 'your.domain.com' for GoogleApps
+        authentication: :plain
+        user_name: "Tucorreo@gmail.com"
+        password: "password"
+  

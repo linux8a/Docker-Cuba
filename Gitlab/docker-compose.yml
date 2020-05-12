@@ -1,0 +1,183 @@
+version: '3.1'
+networks:
+  internal-network:
+    external: false
+  traefik:
+    external: 
+      name: outside-network
+
+services:
+  postgres:
+    image: postgres:latest
+    restart: always
+    #ports:
+    #  - "5432:5432"
+    networks:
+      - internal-network
+    labels: 
+      - traefik.enable=false
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    environment:
+      - 'DB_USER=gitlab'
+      - 'POSTGRES_PASSWORD=p@ssw0rd'
+      - 'POSTGRES_DB=gitlab'
+      - 'DB_EXTENSION=pg_trgm'
+
+  gitlab:
+    image: gitlab/gitlab-ce:latest
+    hostname: gitlab
+    domainname: unixfree.org
+    container_name: gitlab
+    restart: always
+    networks:
+      - traefik
+      - internal-network 
+    labels:
+      - "traefik.backend=gitlab"
+      - "traefik.frontend.rule=Host:gitlab.unixfree.org"
+      - "traefik.docker.network=outside-network"
+      - "traefik.port=80"
+      - "traefik.frontend.entryPoints=https"
+    depends_on:
+      - postgres
+    volumes:
+            - ./gitlab-data:/var/opt/gitlab
+            - ./.ssh/ssh_host_rsa_key.pub:/etc/gitlab/ssh_host_rsa_key.pub
+            - ./.ssh/ssh_host_rsa_key:/etc/gitlab/ssh_host_rsa_key
+            - ./.ssh/authorized_keys:/var/opt/gitlab/.ssh/authorized_keys
+    ports:
+      #- "8080:80"
+      - "10022:22"  
+    environment:
+      - "DEBUG=false"
+      - "DB_ADAPTER=postgresql"
+      - "DB_HOST=postgresql"
+      - "DB_PORT=5432"
+      - "DB_USER=gitlab"
+      - 'DB_PASS=p@ssw0rd'
+      - 'DB_NAME=gitlab'
+
+      - 'TZ=America/Havana'
+      - 'GITLAB_TIMEZONE=Havana'
+      - 'GITLAB_HTTPS=true'
+      - 'GITLAB_SELF_SIGNED=true'
+
+      - 'GITLAB_HOST=gitlab'
+        #     - 'GITLAB_PORT=80'
+        #  - 'GITLAB_SSH_PORT=10022'
+      - 'GITLAB_RELATIVE_URL_ROOT='
+      - 'GITLAB_SECRETS_DB_KEY_BASE=long-and-random-alphanumeric-string'
+      - 'GITLAB_SECRETS_SECRETS_KEY_BASE=long-and-random-alphanumeric-string'
+      - 'GITLAB_SECRETS_OTP_KEY_BASE=long-and-random-alphanumeric-string'
+      - 'GITLAB_ROOT_PASSWORD='
+      - 'GITLAB_ROOT_EMAIL='
+      - 'GITLAB_NOTIFY_ON_BROKEN_BUILDS=true'
+      - 'GITLAB_NOTIFY_PUSHER=false'
+      - 'GITLAB_EMAIL=notificaciones@unixfree.org'
+      - 'GITLAB_EMAIL_REPLY_TO=noreply@unixfree.org'
+      - 'GITLAB_INCOMING_EMAIL_ADDRESS=reply@unixfree.org'
+      - 'GITLAB_BACKUP_SCHEDULE=daily'
+      - 'GITLAB_BACKUP_TIME=01:00'
+
+      - 'SMTP_ENABLED=false'
+      - 'SMTP_DOMAIN=www.unixfree.org'
+      - 'SMTP_HOST=smtp.google.com'
+      - 'SMTP_PORT=587'
+      - 'SMTP_USER=mailer@unixfree.org'
+      - 'SMTP_PASS=password'
+      - 'SMTP_STARTTLS=true'
+      - 'SMTP_AUTHENTICATION=login'
+
+      - 'IMAP_ENABLED=false'
+      - 'IMAP_HOST=imap.gmail.com'
+      - 'IMAP_PORT=993'
+      - 'IMAP_USER=mailer@unixfree.org'
+      - 'IMAP_PASS=password'
+      - 'IMAP_SSL=true'
+      - 'IMAP_STARTTLS=true'
+
+        #      - 'OAUTH_ENABLED=false'
+        #      - 'OAUTH_AUTO_SIGN_IN_WITH_PROVIDER='
+        #      - 'OAUTH_ALLOW_SSO='
+        #      - 'OAUTH_BLOCK_AUTO_CREATED_USERS=true'
+        #      - 'OAUTH_AUTO_LINK_LDAP_USER=false'
+        #      - 'OAUTH_AUTO_LINK_SAML_USER_false'
+        #      - 'OAUTH_EXTERNAL_PROVIDERS='
+        #      - 'OAUTH_CAS3_LABEL=cas3'
+        #      - 'OAUTH_CAS3_SERVER='
+        #      - 'OAUTH_CAS3_DISABLE_SSL_VERIFICATION=false'
+        #      - 'OAUTH_CAS3_LOGIN_URL=/cas/login'
+        #      - 'OAUTH_CAS3_VALIDATE_URL=/cas/p3/serviceValidate'
+        #      - 'OAUTH_CAS3_LOGOUT_URL=/cas/logout'
+      
+        #      - 'OAUTH_GOOGLE_API_KEY='
+        #      - 'OAUTH_GOOGLE_APP_SECRET='
+        #      - 'OAUTH_GOOGLE_RESTRICT_DOMAIN='
+      
+        #      - 'OAUTH_FACEBOOK_API_KEY='  
+        #      - 'OAUTH_FACEBOOK_APP_SECRET='
+
+        #      - 'OAUTH_TWITTER_API_KEY='
+        #      - 'OAUTH_TWITTER_APP_SECRET='
+
+        #      - 'OAUTH_GITHUB_API_KEY='
+        #      - 'OAUTH_GITLAB_APP_SECRET='
+      
+        #      - 'OAUTH_GITHUB_API_KEY='
+        #      - 'OAUTH_GITHUB_APP_SECRET='
+        #      - 'OAUTH_GITHUB_URL='
+        #      - 'OAUTH_GITHUB_VERIFY_SSL='
+
+        #      - 'OAUTH_BITBUCKET_API_KEY='
+        #      - 'OAUTH_BITBUCKET_APP_SECRET='
+
+        #      - 'OAUTH_SAML_ASSERTION_CONSUMER_SERVICE_URL='
+        #      - 'OAUTH_SAML_IDP_CERT_FINGERPRINT='
+        #      - 'OAUTH_SAML_IDP_SSO_TARGET_URL='
+        #      - 'OAUTH_SAML_ISSUER='
+        #      - 'OAUTH_SAML_LABEL="Our SAML Provider"'
+        #      - 'OAUTH_SAML_NAME_IDENTIFIER_FORMAT=urn:oasis:names:tc:SAML:2.0:nameid-format:transient'
+        #      - 'OAUTH_SAML_GROUPS_ATTRIBUTE='
+        #      - 'OAUTH_SAML_EXTERNAL_GROUPS='
+        #      - 'OAUTH_SAML_ATTRIBUTE_STATEMENTS_EMAIL='
+        #      - 'OAUTH_SAML_ATTRIBUTE_STATEMENTS_NAME='
+        #      - 'OAUTH_SAML_ATTRIBUTE_STATEMENTS_USERNAME='
+        #      - 'OAUTH_SAML_ATTRIBUTE_STATEMENTS_FIRST_NAME='
+        #      - 'OAUTH_SAML_ATTRIBUTE_STATEMENTS_LAST_NAME='
+      
+        #      - 'OAUTH_CROWD_SERVER_URL='
+        #      - 'OAUTH_CROW_APP_NAME='
+        #      - 'OAUTH_CROWD_APP_PASSWORD='
+      
+        #      - 'OAUTH_AUTH0_CLIENT_ID='
+        #      - 'OAUTH_AUTH0_CLIENT_SECRET='
+        #      - 'OAUTH_AUTH0_DOMAIN='
+        #      - 'OAUTH_AUTH0_SCOPE='
+
+        #      - 'OAUTH_AZURE_API_KEY='
+        #      - 'OAUTH_AZURE_API_SECCRET='
+        #      - 'OAUTH_AZURE_TENANT_ID='  
+    #    GITLAB_OMNIBUS_CONFIG: |
+    #      logging['logrotate_frequency'] = "weekly"
+    #      logging['logrotate_rotate'] = 52
+    #      logging['logrotate_compress'] = "compress"
+    #      logging['logrotate_method'] = "copytruncate"
+     #     logging['logrotate_delaycompress'] = "delaycompress"
+     #     nginx['listen_port'] = 443
+     #     nginx['redirect_http_to_https'] = true
+     #     nginx['ssl_certificate'] = "/etc/ssl/certs/gitlab/server-cert.pem"
+     #    nginx['ssl_certificate_key'] = "/etc/ssl/certs/gitlab/server-key.pem"
+      #    nginx['ssl_protocols'] = "TLSv1.1 TLSv1.2"
+      #    nginx['logrotate_frequency'] = "weekly"
+      #    nginx['logrotate_rotate'] = 52
+      #    nginx['logrotate_compress'] = "compress"
+      #    nginx['logrotate_method'] = "copytruncate"
+      #    nginx['logrotate_delaycompress'] = "delaycompress"
+
+volumes:
+  postgres-data:
+  gitlab-data:
+
+
+

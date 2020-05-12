@@ -1,0 +1,47 @@
+version: '3.3'
+
+services:
+   wordpress:
+     depends_on:
+       - db
+     image: wordpress:latest
+     volumes:
+       - ./wordpress_files:/var/www/html
+       - ./php_config/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
+     restart: always
+     environment:
+       WORDPRESS_DB_HOST: db:3306
+       WORDPRESS_DB_USER: wordpress
+       WORDPRESS_DB_PASSWORD: my_wordpress_db_password
+     networks:
+      - internal-network
+      - outside-network
+     labels: 
+      - "traefik.backend=wordpress"
+      - "traefik.frontend.rule=Host:blog.unixfree.org"
+      - "traefik.docker.network=outside-network"
+      - "traefik.port=80"
+      - "traefik.frontend.entryPoints=https"
+
+   db:
+     image: mariadb
+     volumes:
+       - ./db_data:/var/lib/mysql
+     restart: always
+     environment:
+       MYSQL_ROOT_PASSWORD: my_db_root_password
+       MYSQL_DATABASE: wordpress
+       MYSQL_USER: wordpress
+       MYSQL_PASSWORD: my_wordpress_db_password
+     networks:
+       - internal-network
+     labels:
+       - "traefik.enable= false"
+volumes:
+    wordpress_files:
+    db_data:
+networks:
+  internal-network:
+    external: false
+  outside-network:
+    external: true

@@ -1,0 +1,93 @@
+version: '3'
+
+services:
+
+  rocketchat:
+    image: rocket.chat:latest
+    command: bash -c 'for i in `seq 1 30`; do node main.js && s=$$? && break || s=$$?; echo "Tried $$i times. Waiting 5 secs..."; sleep 5; done; (exit $$s)'
+    restart: unless-stopped
+    volumes:
+      - ./uploads:/app/uploads
+    environment:
+      - PORT=3000
+      - ROOT_URL=http://chat.lex-sa.cu
+      - MONGO_URL=mongodb://mongo:27017/rocketchat
+      - MONGO_OPLOG_URL=mongodb://mongo:27017/local
+      #- Accounts_UseDNSDomainCheck=True
+      - Accounts_UseDNSDomainCheck=False
+      # - VIRTUAL_HOST=chat.lex-sa.cu
+    depends_on:
+      - mongo
+    networks: 
+      - internal-network
+      - outside-network
+    labels: 
+      - "traefik.backend=rocketchat"
+      - "traefik.frontend.rule=Host:chat.lex-sa.cu"
+      - "traefik.docker.network=outside-network"
+      - "traefik.port=3000"
+      - "traefik.frontend.entryPoints=https"
+
+   # expose:
+   #   - "3000"
+  mongo:
+    image: mongo:4.0
+    restart: unless-stopped
+    networks: 
+     - internal-network
+    labels: 
+     - "traefik.enable=false"   
+    volumes:
+     - ./data/db:/data/db
+     - ./data/dump:/dump
+    command: mongod --smallfiles --oplogSize 128 --replSet rs0 --storageEngine=mmapv1
+
+  # this container's job is just run the command to initialize the replica set.
+  # it will run the command and remove himself (it will not stay running)
+  mongo-init-replica:
+    image: mongo
+    command: 'bash -c "for i in `seq 1 30`; do mongo mongo/rocketchat --eval \"rs.initiate({ _id: ''rs0'', members: [ { _id: 0, host: ''localhost:27017'' } ]})\" && s=$$? && break || s=$$?; echo \"Tried $$i times. Waiting 5 secs...\"; sleep 5; done; (exit $$s)"'
+    networks: 
+      - internal-network
+    labels: 
+      - "traefik.enable=false"      
+    depends_on:
+      - mongo
+
+  # hubot, the popular chatbot (add the bot user first and change the password before starting this image)
+  hubot:
+    image: rocketchat/hubot-rocketchat:latest
+    restart: unless-stopped
+    environment:
+      - ROCKETCHAT_URL=:0.0.0.0:3000
+      - ROCKETCHAT_ROOM=GENERAL
+      - ROCKETCHAT_USER=bot
+      - ROCKETCHAT_PASSWORD=botpassword
+      - BOT_NAME=bot
+  # you can add more scripts as you'd like here, they need to be installable by npm
+      - EXTERNAL_SCRIPTS=hubot-help,hubot-seen,hubot-links,hubot-diagnostics
+    depends_on:
+      - rocketchat
+    volumes:
+      - ./scripts:/home/hubot/scripts
+  # this is used to expose the hubot port for notifications on the host on port 3001, e.g. for hubot-jenkins-notifier
+    networks: 
+      - internal-network
+      - outside-network 
+    labels: 
+      - "traefik.backend=hubot"
+      - "traefik.frontend.rule=Host:hubot.lex-sa.cu"
+      - "traefik.docker.network=outside-network"
+      - "traefik.port=8080"
+      - "traefik.frontend.entryPoints=https"
+
+    #ports:
+    #  - 3001:8080
+
+networks: 
+  internal-network:
+    external: false
+  outside-network:
+    external: true
+
+ 

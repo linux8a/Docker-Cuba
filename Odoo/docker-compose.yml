@@ -1,0 +1,42 @@
+version: '3'
+services:
+  odoo:
+    image: odoo:11.0
+    restart: always
+    depends_on:
+      - db
+    volumes:
+      - ./odoo-web-data:/var/lib/odoo
+      - ./addons:/mnt/extra-addons
+    networks: 
+      - internal-network
+      - outside-network
+    labels: 
+      - "traefik.backend=odoo"
+      - "traefik.frontend.rule=Host:dev-odoo.unixfree.org"
+      - "traefik.docker.network=outside-network"
+      - "traefik.port=8069"
+      - "traefik.frontend.entryPoints=https"
+ 
+  db:
+    image: postgres:latest
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=odoo
+      - POSTGRES_USER=odoo
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - ./odoo-db-data:/var/lib/postgresql/data/pgdata
+    labels: 
+      - "traefik.enable=false"
+    networks: 
+      - internal-network
+  
+volumes:
+  odoo-web-data:
+  odoo-db-data:
+networks: 
+  internal-network:
+    external: false
+  outside-network:
+    external: true

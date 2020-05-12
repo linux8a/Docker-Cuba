@@ -1,0 +1,16 @@
+version: '3.1'
+
+services:
+  squid:
+     image: squid
+     hostname: cubsna001
+     container_name: squid
+     ports:
+      - "3128:3128"
+     volumes:
+      - ./squid/cache:/var/spool/squid
+      - ./etc/squid.conf:/etc/squid/squid.confi:ro
+      - ./squid/log:/var/log/squid:rw
+     restart: always
+volumes: 
+    squid:

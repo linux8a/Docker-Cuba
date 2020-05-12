@@ -1,0 +1,54 @@
+version: '3.1'
+
+services:
+  postgres:
+    image: postgres:latest
+    restart: always
+    networks:
+      - internal-network
+    labels:
+      - "traefik.enable= false"
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+      - /etc/localtime:/etc/localtime:ro  
+    environment:
+      - 'POSTGRES_PASSWORD=p@ssw0rd'
+      - 'POSTGRES_DB=redmine'
+
+  redmine-web:
+    image: redmine:latest
+    container_name: redmine-web
+    restart: always
+    networks:
+      - internal-network
+      - outside-network
+    labels: 
+      - "traefik.backend=redmine-web"
+      - "traefik.frontend.rule=Host:redmine.unixfree.org"
+      - "traefik.docker.network=outside-network"
+      - "traefik.port=3000"
+      - "traefik.frontend.entryPoints=https"
+
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./redmine-data:/usr/src/redmine/files
+      - ./redmine-data/plugins:/usr/src/redmine/plugins
+      - ./redmine-data/git:/usr/src/redmine/files/git
+      - ./tools/:/usr/src/redmine/sh
+      - ./etc/configuration.yml:/usr/src/redmine/config/configuration.yml
+    #ports:
+    #  - 3000:3000
+    environment:
+      - 'REDMINE_DB_POSTGRES=postgres'
+      - 'REDMINE_DB_DATABASE=redmine'
+      - 'REDMINE_DB_PASSWORD=p@ssw0rd'
+
+volumes:
+  postgres-data:
+  redmine-data:
+
+networks:
+  internal-network:
+    external: false
+  outside-network:
+    external: true

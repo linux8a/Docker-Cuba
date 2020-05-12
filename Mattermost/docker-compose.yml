@@ -1,0 +1,73 @@
+version: '3.1'
+services:
+   db:
+     image: postgres:latest
+     restart: always
+     hostname: db
+     volumes:
+      - ./db-data/var/lib/postgresql/data:/var/lib/postgresql/data
+     environment:
+      - POSTGRES_USER=mmuser #${POSTGRES_USER}
+      - POSTGRES_PASSWORD=mmuser_password #${POSTGRES_PASSWORD}
+      - POSTGRES_DB=mattermost
+     labels: 
+      - traefik.enable=false
+     networks:
+      - internal-network
+   app:
+     image:  mattermost/mattermost-team-edition
+     hostname: cuapp001
+     restart: always
+     container_name: cuapp001
+     volumes:
+      - ./app/etc/config.json:/mattermost/config/config.json
+      - ./app/mattermost/data:/mattermost/data:rw
+      - ./app/mattermost/logs:/mattermost/logs:rw
+      - ./app/mattermost/plugins:/mattermost/plugins:rw
+      - ./app/mattermost/client-plugins:/mattermost/client/plugins:rw
+     environment:
+      - DB_ADAPTER=postgres
+      - DB_HOST=db
+      - DB_USER=mmuser #${DB_USER}
+      - DB_PASS=mmuser_password #${DB_PASS}
+      - DB_PORT=5432
+      - DB_NAME=mattermost
+      - edition=team
+     depends_on: 
+      - db
+     links: 
+      - db
+     labels:
+      - "traefik.backend=app"
+      - "traefik.frontend.rule=Host:chat.unixfree.org"
+      - "traefik.docker.network=outside-network"
+      - "traefik.port=8065"
+      #- "traefik.frontend.entryPoints=https"
+     networks: 
+      - 'outside-network'
+      - 'internal-network'
+
+      #- chat_network
+#   lb:
+#     image: nginx
+#     ports:
+#       - "443:443"
+#       - "80:80"  
+#     volumes:
+#       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+#       - ./nginx/certs:/certs
+#     restart: always
+#     links:
+#       - app
+#     networks:
+#       - chat_network
+#     environment:
+#       - VIRTUAL_HOST
+volumes: 
+  app:
+  db-data:
+networks: 
+  internal-network:
+    external: false
+  outside-network:
+    external: true

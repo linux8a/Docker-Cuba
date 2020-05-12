@@ -1,0 +1,36 @@
+defaultEntryPoints = ["http", "https"]
+
+[entryPoints]
+  [entryPoints.dashboard]
+    address = ":8080"
+    [entryPoints.dashboard.auth]
+      [entryPoints.dashboard.auth.basic]
+        users = ["admin:$apr1$Fa4tmyCp$/4GVr.3opE7bGhLjWIxnT."]
+  [entryPoints.http]
+    address = ":80"
+      [entryPoints.http.redirect]
+        entryPoint = "https"
+  [entryPoints.https]
+    address = ":443"
+      [entryPoints.https.tls]
+
+[api]
+entrypoint="dashboard"
+
+[acme]
+email = "yourmail@gmail.com"
+storage = "acme.json"
+entryPoint = "https"
+onHostRule = true
+  [acme.httpChallenge]
+  entryPoint = "http"
+[certificatesResolvers.myresolver.acme]
+# ...
+  caServer = "https://acme-staging-v02.api.letsencrypt.org/directory"
+ # ...
+[certificatesResolvers.myresolver.acme.tlsChallenge]
+
+[docker]
+domain = "lex-sa.cu"
+watch = true
+network = "outside-network"

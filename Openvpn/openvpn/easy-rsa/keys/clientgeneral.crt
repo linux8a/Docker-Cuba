@@ -1,0 +1,97 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number: 2 (0x2)
+        Signature Algorithm: sha256WithRSAEncryption
+        Issuer: C=CU, ST=HB, L=Habana, O=House, OU=House, CN=cuvpn001/name=server/emailAddress=linux8a@gmail.com
+        Validity
+            Not Before: Apr 30 02:44:00 2020 GMT
+            Not After : Apr 28 02:44:00 2030 GMT
+        Subject: C=CU, ST=HB, L=Habana, O=house, OU=house, CN=clientgeneral/name=EasyRSA/emailAddress=linux8a@gmail.com
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                RSA Public-Key: (2048 bit)
+                Modulus:
+                    00:d0:cc:fc:d6:84:3d:7d:1b:50:8c:f2:46:8d:eb:
+                    28:1f:48:cc:d9:0b:4e:cf:46:3a:dd:8a:c6:a9:c6:
+                    33:57:81:9a:6c:39:8d:b9:10:db:1b:9c:f2:75:a1:
+                    f6:ff:3f:e9:09:7d:f8:c9:1c:47:23:bf:7e:bf:85:
+                    55:fb:c5:3b:de:c1:9b:99:c0:18:01:e5:52:a8:27:
+                    37:73:64:a2:af:16:1e:82:8a:47:f1:70:2d:e2:e8:
+                    ab:76:6d:ad:20:4d:ef:1c:f1:f2:4f:85:d7:e0:9c:
+                    c8:25:d5:78:05:83:07:3e:7c:38:bb:96:90:b0:2b:
+                    a9:61:d3:21:c1:52:e5:25:01:76:17:02:fe:93:4a:
+                    ac:e3:e8:e3:37:90:72:2e:b6:e9:0c:e7:f3:fd:1c:
+                    59:ef:b5:9d:f5:92:1f:63:80:d3:88:b2:2f:39:0a:
+                    5a:9d:f7:64:fd:e6:d5:7e:6e:8b:05:af:10:3d:1b:
+                    45:d7:38:56:90:dd:3c:89:fd:af:14:da:c5:d3:03:
+                    7f:72:8f:e3:cd:03:4e:15:25:c2:cc:ab:3f:97:e9:
+                    75:9b:74:fe:13:0a:84:96:fe:bf:39:48:38:ed:e1:
+                    51:83:7b:c3:7b:2e:0b:c6:48:a3:23:2c:0c:84:14:
+                    5c:a6:21:80:b4:4e:5c:72:9d:11:d0:8f:bd:24:c6:
+                    59:05
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            Netscape Comment: 
+                Easy-RSA Generated Certificate
+            X509v3 Subject Key Identifier: 
+                5B:3B:50:27:E8:C8:D1:68:00:B0:30:F1:49:79:2F:81:22:CE:39:62
+            X509v3 Authority Key Identifier: 
+                keyid:62:62:A1:6E:CD:4B:10:83:82:70:08:80:50:46:57:67:F1:C1:9B:EB
+                DirName:/C=CU/ST=HB/L=Habana/O=House/OU=House/CN=cuvpn001/name=server/emailAddress=linux8a@gmail.com
+                serial:45:0D:37:98:AB:2C:DC:A4:0F:73:93:68:19:D6:50:C2:5F:2C:6E:B4
+
+            X509v3 Extended Key Usage: 
+                TLS Web Client Authentication
+            X509v3 Key Usage: 
+                Digital Signature
+            X509v3 Subject Alternative Name: 
+                DNS:clientgeneral
+    Signature Algorithm: sha256WithRSAEncryption
+         49:88:3c:fb:22:fb:a1:ab:7c:c2:aa:2b:52:d2:65:ee:a7:bb:
+         1d:f7:71:01:37:44:2d:b8:78:0f:2f:fd:67:6e:34:12:27:d7:
+         ca:e7:fe:36:15:82:74:45:39:84:e3:e0:ff:6a:5d:60:a2:d3:
+         ee:4b:47:b7:0d:4d:c7:a4:fb:70:6f:5f:60:fb:7d:7c:8d:6d:
+         68:a9:71:ce:d2:1f:8e:f3:3b:53:47:9b:e0:d3:b2:38:bd:09:
+         51:35:17:31:9d:67:06:38:5e:53:e8:6e:8c:45:e2:df:76:e1:
+         1c:fb:5e:8c:cd:c9:b9:94:18:68:5b:71:06:ab:12:a0:b0:85:
+         84:d2:ce:17:fc:dd:e4:42:58:30:93:6e:71:9f:98:da:ce:97:
+         78:b6:8e:54:38:d5:9f:6a:76:33:39:e3:b6:1f:18:5b:d8:a7:
+         33:d0:47:b9:86:8b:ec:33:08:e3:3f:e8:2b:42:af:e0:2c:fa:
+         2e:f7:9a:3b:b9:26:cc:94:e4:cf:31:25:a8:09:4e:d3:55:6d:
+         4a:00:d1:26:27:61:3d:cd:f6:c3:10:35:3a:f5:1a:61:7b:d3:
+         0e:d6:3f:b1:97:30:2b:0d:03:bc:c6:4d:e7:ca:96:ec:a4:79:
+         ed:6e:d8:a2:18:e8:90:9d:bd:85:2f:53:34:23:5c:0e:e5:62:
+         80:db:d3:fe
+-----BEGIN CERTIFICATE-----
+MIIFFDCCA/ygAwIBAgIBAjANBgkqhkiG9w0BAQsFADCBkTELMAkGA1UEBhMCQ1Ux
+CzAJBgNVBAgTAkhCMQ8wDQYDVQQHEwZIYWJhbmExDjAMBgNVBAoTBUhvdXNlMQ4w
+DAYDVQQLEwVIb3VzZTERMA8GA1UEAxMIY3V2cG4wMDExDzANBgNVBCkTBnNlcnZl
+cjEgMB4GCSqGSIb3DQEJARYRbGludXg4YUBnbWFpbC5jb20wHhcNMjAwNDMwMDI0
+NDAwWhcNMzAwNDI4MDI0NDAwWjCBlzELMAkGA1UEBhMCQ1UxCzAJBgNVBAgTAkhC
+MQ8wDQYDVQQHEwZIYWJhbmExDjAMBgNVBAoTBWhvdXNlMQ4wDAYDVQQLEwVob3Vz
+ZTEWMBQGA1UEAxMNY2xpZW50Z2VuZXJhbDEQMA4GA1UEKRMHRWFzeVJTQTEgMB4G
+CSqGSIb3DQEJARYRbGludXg4YUBnbWFpbC5jb20wggEiMA0GCSqGSIb3DQEBAQUA
+A4IBDwAwggEKAoIBAQDQzPzWhD19G1CM8kaN6ygfSMzZC07PRjrdisapxjNXgZps
+OY25ENsbnPJ1ofb/P+kJffjJHEcjv36/hVX7xTvewZuZwBgB5VKoJzdzZKKvFh6C
+ikfxcC3i6Kt2ba0gTe8c8fJPhdfgnMgl1XgFgwc+fDi7lpCwK6lh0yHBUuUlAXYX
+Av6TSqzj6OM3kHIutukM5/P9HFnvtZ31kh9jgNOIsi85Clqd92T95tV+bosFrxA9
+G0XXOFaQ3TyJ/a8U2sXTA39yj+PNA04VJcLMqz+X6XWbdP4TCoSW/r85SDjt4VGD
+e8N7LgvGSKMjLAyEFFymIYC0TlxynRHQj70kxlkFAgMBAAGjggFtMIIBaTAJBgNV
+HRMEAjAAMC0GCWCGSAGG+EIBDQQgFh5FYXN5LVJTQSBHZW5lcmF0ZWQgQ2VydGlm
+aWNhdGUwHQYDVR0OBBYEFFs7UCfoyNFoALAw8Ul5L4EizjliMIHRBgNVHSMEgckw
+gcaAFGJioW7NSxCDgnAIgFBGV2fxwZvroYGXpIGUMIGRMQswCQYDVQQGEwJDVTEL
+MAkGA1UECBMCSEIxDzANBgNVBAcTBkhhYmFuYTEOMAwGA1UEChMFSG91c2UxDjAM
+BgNVBAsTBUhvdXNlMREwDwYDVQQDEwhjdXZwbjAwMTEPMA0GA1UEKRMGc2VydmVy
+MSAwHgYJKoZIhvcNAQkBFhFsaW51eDhhQGdtYWlsLmNvbYIURQ03mKss3KQPc5No
+GdZQwl8sbrQwEwYDVR0lBAwwCgYIKwYBBQUHAwIwCwYDVR0PBAQDAgeAMBgGA1Ud
+EQQRMA+CDWNsaWVudGdlbmVyYWwwDQYJKoZIhvcNAQELBQADggEBAEmIPPsi+6Gr
+fMKqK1LSZe6nux33cQE3RC24eA8v/WduNBIn18rn/jYVgnRFOYTj4P9qXWCi0+5L
+R7cNTcek+3BvX2D7fXyNbWipcc7SH47zO1NHm+DTsji9CVE1FzGdZwY4XlPoboxF
+4t924Rz7XozNybmUGGhbcQarEqCwhYTSzhf83eRCWDCTbnGfmNrOl3i2jlQ41Z9q
+djM547YfGFvYpzPQR7mGi+wzCOM/6CtCr+As+i73mju5JsyU5M8xJagJTtNVbUoA
+0SYnYT3N9sMQNTr1GmF70w7WP7GXMCsNA7zGTefKluykee1u2KIY6JCdvYUvUzQj
+XA7lYoDb0/4=
+-----END CERTIFICATE-----
