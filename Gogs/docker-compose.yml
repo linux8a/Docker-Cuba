@@ -1,0 +1,43 @@
+version: '3.5'
+
+services:
+   git:
+      image: gogs/gogs
+      restart: always
+      volumes:
+        - ./git-data:/data
+        - ./etc/app.ini:/data/gogs/conf/app.ini
+        - /etc/localtime:/etc/localtime:ro
+        - /etc/timezone:/etc/timezone:ro
+      ports:
+        - '10022:22'
+      depends_on:
+        - postgres
+      labels:
+        - "traefik.backend=git"
+        - "traefik.frontend.rule=Host:git.unixfree.org"
+        - "traefik.docker.network=outside-network"
+        - "traefik.port=3000"
+        - "traefik.frontend.entryPoints=https"
+      networks:
+        - internal-network
+        - outside-network
+   postgres:
+      image: postgres:latest
+      restart: always
+      hostname: postgres
+      networks:
+        - internal-network
+      labels: 
+        - traefik.enable=false
+      volumes:
+        - ./postgres-data:/var/lib/postgresql/data
+      environment:
+        - 'POSTGRES_USER=gogs'
+        - 'POSTGRES_PASSWORD=p@ssw0rd'
+        - 'POSTGRES_DB=gogs'
+networks:
+    internal-network:
+        external: false
+    outside-network:
+        external: true        
