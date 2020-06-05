@@ -13,7 +13,7 @@ services:
       - "3128:3128"
      volumes:
       - ./squid/cache:/var/spool/squid
-      - ./etc/squid.conf:/etc/squid/squid.confi:ro
+      - ./etc/squid.conf:/etc/squid/squid.conf:ro
       - ./squid/log:/var/log/squid:rw
      restart: always
 volumes: 
