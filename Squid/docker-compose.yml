@@ -3,7 +3,7 @@ version: '3.5'
 services:
   squid:
      build:
-      context: ./dockerfile
+      context: ./Dockerfile
       cache_from:
         - alpine:latest
      image: squid
