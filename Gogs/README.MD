@@ -1,5 +1,6 @@
 ## Microservice gogs (Git Server)
 
+Aporte de Argenis Ochoa Gonzalez (@linux8a)
 
 A painless self-hosted Git service
 Easy to install

@@ -1,5 +1,7 @@
 # Micro service de Openvpn
 
+Aporte de Argenis Ochoa Gonzalez (@linux8a)
+
 1. Crear la imagen a partir del Dockerfile
 
 docker build -t openvpn-alpine -f ./Dockerfile .

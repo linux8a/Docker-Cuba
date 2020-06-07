@@ -1,5 +1,7 @@
 ## Run Service Gitlab
 
+Aporte de Argenis Ochoa Gonzalez (@linux8a)
+
 * This project running  microservices gitlab
 
 All trafic is rediregir ssl por 443

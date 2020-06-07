@@ -1,5 +1,7 @@
 ## Microservicio Symfony (nginx, php7, mariadb) Argenis Ochoa
 
+Aporte de Argenis Ochoa Gonzalez (@linux8a)
+
 Compilaremos el php7 con soporte para usar composer 
 
 Se debe crear el fichero .env para las variables de entorno.
