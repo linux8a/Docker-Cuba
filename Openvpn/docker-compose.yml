@@ -2,6 +2,10 @@ version: '3.5'
 
 services:
   vpn:
+     build: 
+      context: ./dockerfile
+      cache_from:
+        - alpine:latest
      image: openvpn-alpine
      container_name: openvpn
      ports:
