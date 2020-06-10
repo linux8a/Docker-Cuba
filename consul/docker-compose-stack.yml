@@ -1,0 +1,65 @@
+version: '3.7'
+services:
+  consulserver:
+    image: consul:1.6.5
+    ports:
+      - target: 8500
+        published: 8500
+        mode: ingress
+      - target: 8600
+        published: 8600
+        protocol: udp
+        mode: ingress
+    networks: 
+      - consul
+    environment: 
+      - CONSUL_BIND_INTERFACE=eth0
+    command: 'agent -server -bootstrap -ui -client=0.0.0.0'
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+      mode: replicated
+      placement:
+        constraints:
+          - 'node.role==manager'
+    
+  consulcluster:
+    image: consul:1.6.5
+    networks: 
+      - consul 
+    ports:
+      - target: 8300
+        published: 8300
+        mode: ingress
+    environment: 
+      - CONSUL_BIND_INTERFACE=eth0
+    command: 'agent -server -retry-join=consulserver:8301 -retry-join=consulcluster:8300'
+    deploy:  
+      mode: replicated
+      replicas: 4
+      placement:
+        constraints: 
+          - 'node.role==worker'
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+  client:
+    image: consul:1.6.5
+    environment: 
+      - 'CONSUL_LOCAL_CONFIG={"leave_on_terminate": true}'
+    command: 'agent -bind=127.0.0.1 -retry-join=consulcluster'
+    deploy:  
+      mode: replicated
+      replicas: 4
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+networks: 
+  consul:

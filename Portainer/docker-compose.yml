@@ -1,0 +1,26 @@
+version: '3.1'
+
+services:
+  admin-docker:
+    image: portainer/portainer
+    volumes:
+      - ./data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: always
+    networks: 
+      - internal-network
+      - traefik
+    labels: 
+      - "traefik.backend=admin-docker"
+      - "traefik.frontend.rule=Host:admin-docker.unixfree.org"
+      - "traefik.docker.network=outside-network"
+      - "traefik.port=9000"
+      - "traefik.frontend.entryPoints=https"  
+volumes: 
+  data:
+networks: 
+  internal-network: 
+    external: false
+  traefik:
+    external: 
+      name: outside-network  
