@@ -1,0 +1,19 @@
+version: '3.1'
+
+services:
+  admin-docker:
+    image: portainer/portainer
+    volumes:
+      - ./data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: always
+    ports: 
+      - 9000:9000
+volumes: 
+  data:
+networks: 
+  internal-network: 
+    external: false
+  traefik:
+    external: 
+      name: outside-network  
