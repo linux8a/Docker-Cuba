@@ -1,0 +1,12 @@
+version: '3.5'
+
+services:
+  kmsserver:
+     build:
+      context: ./dockerfile
+     image: kms-server:v1.0
+     hostname: kmsserver
+     container_name: kmsserver
+     ports:
+      - "1688:1688"
+     restart: always
