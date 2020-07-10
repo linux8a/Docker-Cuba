@@ -11,8 +11,8 @@ Esta en etapa prueba (develop)
 * Contribucion:
 
 Idea sugerida por @smeagol1989:
-  - Bridge, vlan
+  - Bridge,bridge-utils, vlan,kimchi
 
 Creado e implementado por @linux8a (Argenis Ochoa Gonzalez):
-  - Docker, docker-compose, qemu, git, virt-manager
+  - Docker, docker-compose, qemu, git
 
