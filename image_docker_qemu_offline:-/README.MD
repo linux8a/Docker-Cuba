@@ -11,8 +11,8 @@ Esta en etapa prueba (develop)
 * Contribucion:
 
 Idea sugerida por @smeagol1989:
-  - Bridge,bridge-utils, vlan,kimchi
+  - configuracion ejemplo bridge y vlan
 
 Creado e implementado por @linux8a (Argenis Ochoa Gonzalez):
-  - Docker, docker-compose, qemu, git
+  - Docker, docker-compose, qemu, git,bridge,bridge-utils, vlan,kimchi
 
