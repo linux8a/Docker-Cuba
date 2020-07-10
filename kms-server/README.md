@@ -258,3 +258,5 @@ You can download source code on [https://forums.mydigitallife.info/threads/50234
 
 - Key:
 You can find key on [https://technet.microsoft.com/en-us/library/jj612867.aspx](https://technet.microsoft.com/en-us/library/jj612867.aspx)
+
+https://docs.microsoft.com/en-us/windows-server/get-started/kmsclientkeys
