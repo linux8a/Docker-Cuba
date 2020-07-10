@@ -10,7 +10,7 @@ This microservice allow you access content block in your localitation. ;-)
 * ajusting your client vpn config.
 (ip and port and cert)
 
-**********
+'''
 vpnclient:
     image: openvpn-client
     cap_add:
@@ -46,4 +46,4 @@ vpnclient:
     network_mode: "service:vpnclient"   # The magic is in this line
     stdin_open: true
     tty: true
-    *******
+   ''' 
