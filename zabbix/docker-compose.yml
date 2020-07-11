@@ -1,0 +1,58 @@
+version: '3.5'
+
+services:
+    zabbix:
+      # image: zabbix/zabbix-appliance:alpine-4.4-latest
+       image: zabbix/zabbix-appliance:alpine-trunk
+       restart: always
+       container_name: zabbix
+       volumes: 
+         - /etc/localtime:/etc/localtime:ro
+         - /etc/timezone:/etc/timezone:ro
+         - ./zbx_env/usr/lib/zabbix/alertscripts:/usr/lib/zabbix/alertscripts:ro
+         - ./zbx_env/usr/lib/zabbix/externalscripts:/usr/lib/zabbix/externalscripts:ro
+         - ./zbx_env/var/lib/zabbix/modules:/var/lib/zabbix/modules:ro
+         - ./zbx_env/var/lib/zabbix/enc:/var/lib/zabbix/enc:ro
+         - ./zbx_env/var/lib/zabbix/ssh_keys:/var/lib/zabbix/ssh_keys:ro
+         - ./zbx_env/var/lib/zabbix/mibs:/var/lib/zabbix/mibs:ro
+         - ./zbx_env/var/lib/zabbix/snmptraps:/var/lib/zabbix/snmptraps:ro
+         - ./db-data:/var/lib/mysql
+       ports: 
+        - 10051:10051
+       environment: 
+         - 'AGENT_URL: zabbix-agent'
+       networks:
+         - internal-network
+         - outside-network
+       labels: 
+         - "traefik.backend=zabbix"
+         - "traefik.frontend.rule=Host:zabbix.unixfree.org"
+         - "traefik.docker.network=outside-network"
+         - "traefik.port=80"
+         - "traefik.frontend.entryPoints=https"
+    zabbix-agent:    
+       image: zabbix/zabbix-agent:alpine-5.0-latest
+       restart: always
+       container_name: zabbix-agent
+       hostname: zabbix-agent
+       volumes: 
+         - /proc:/host/proc:ro
+         - /sys:/host/sys:ro
+         - /dev:/host/dev:ro
+         - /var/run/docker.sock:/host/var/run/docker.sock
+       #ports: 
+       #   - 10050:10050 
+       environment: 
+          - ZABBIX_SERVER=192.168.1.10 
+          - ZBX_SERVER_HOST=zabbix
+       links: 
+          - zabbix
+       privileged: true 
+       networks: 
+          - internal-network
+          - outside-network 
+networks: 
+    internal-network:
+        external: false
+    outside-network:
+        external: true
