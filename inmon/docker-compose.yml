@@ -1,0 +1,27 @@
+version: '3.3'
+
+services:
+   inmon:
+     image: sflow/sflowtrend:7.0.1
+     hostname: sflowtrend-pro 
+     volumes:
+       - ./data:/var/local/sflowtrend-pro
+       - /etc/localtime:/etc/localtime:ro  
+       - /etc/timezone:/etc/timezone:ro 
+     restart: always
+     ports: 
+      - 6343:6343/udp
+     networks:
+      - outside-network
+     labels: 
+      - "traefik.backend=inmon"
+      - "traefik.frontend.rule=Host:inmon.unixfree.org"
+      - "traefik.docker.network=outside-network"
+      - "traefik.port=8087"
+      - "traefik.frontend.entryPoints=https"
+
+volumes:
+    data:
+networks:
+  outside-network:
+    external: true

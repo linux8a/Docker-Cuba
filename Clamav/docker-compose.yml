@@ -1,0 +1,23 @@
+version: '3.1'
+services:
+  clamav:
+    build: 
+      context: ./dockerfile
+    image: clamav-alpine
+    container_name: clamav
+    ports:
+      - 3310:3310
+    tty: true
+    restart: unless-stopped
+    tmpfs: /var/cache
+    volumes:
+      - ./clamd_data:/var/lib/clamav
+      - ./freshclamCuba.conf:/etc/clamav/freshclam.conf  #Para paises bloqueados. (Si su localizacion no esta bloqueado puede comentar esta linea)
+    ulimits:
+      nproc: 65535
+      nofile:
+          soft: 49999
+          hard: 99999
+volumes:
+  clamd_data:
+    driver: local
