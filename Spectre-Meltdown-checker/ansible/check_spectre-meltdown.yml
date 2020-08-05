@@ -1,0 +1,28 @@
+#############################################################
+#############################################################
+### Script automatizados detectar Spectre/Melton          ###
+###  Create linux8a :)                                    ###
+###  mail: linux8a@gmail.com                              ###
+###  argenis8agonzalez@gmail.com                          ###
+###                                                       ###
+#############################################################
+#############################################################
+
+---
+- name: Run Spectre/Meltdowb checker on hosts
+  hosts: all
+  gather_facts: false
+  tasks:
+    - script: tools/spectre-meltdown-checker.sh --batch json --live
+      register: spectre_output
+      failed_when: false
+      
+    - set_fact:
+        spectre_json: "{{ spectre_output.stdout|from_json}}"
+       
+    - name: Output vulnerability status
+      debug:
+        msg: "Vulnerable to {{ item.NAME }} - {{ item.INFOS }} "
+      with_items: "{{ spectre_json }}"
+      failed_when: item.VULNERABLE
+      when: item.VULNERABLE
