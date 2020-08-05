@@ -6,8 +6,9 @@ Aporte de Argenis Ochoa Gonzalez (@linux8a
 
 [Docker-compose](./docker)
 
-nota: No soy el creador de este script. Solo hice un fork apuntando https://github.com/linux8a/spectre-meltdown-checker
-En el dockerfile para el canal solo he ajustado la version del alpine para que use la 3.12.
+nota: No soy el creador de este script.
+Solo hice un fork apuntando https://github.com/linux8a/spectre-meltdown-checker
+En el dockerfile para el canal solo he ajustado la version del alpine para que use la 3.12 :)
 
 RUN:
 

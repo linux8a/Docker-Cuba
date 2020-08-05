@@ -2,7 +2,7 @@
 
 docker-compose create by Argenis Ochoa Gonzalez (@linux8a)
 
-Suggested service to share by Yoslan (@yoslan)
+Suggested service to  by Yoslan (@yoslan)
 
 1. This now execute
 
