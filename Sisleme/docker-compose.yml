@@ -1,0 +1,62 @@
+version: '3.5'
+
+services:
+  database:
+    image: postgres:latest
+    environment:
+      - POSTGRES_DB=${DATABASE_NAME}
+      - POSTGRES_USER=${DATABASE_USER}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+    volumes:
+      - ./db_data:/var/lib/postgresql/data
+    restart: always
+    networks:
+      - internal-network
+    labels:
+      - "traefik.enable=false"
+  cuapp001:
+    build:
+      context: ./php-fpm
+      cache_from:
+        - php:fpm-alpine
+    image: sisleme-php:fpm-alpine 
+    depends_on:
+      - ${SRV_DB}
+        #  user: 1000:1000
+    environment:
+      - APP_ENV=${APP_ENV}
+      - APP_SECRET=${APP_SECRET}
+      - DATABASE_URL=postgres://${DATABASE_USER}:${DATABASE_PASSWORD}@database::5432/${DATABASE_NAME}
+    volumes:
+      - ./apps/web:/var/www
+    depends_on: 
+      - ${SRV_DB}
+    links:
+      - ${SRV_DB}
+    networks: 
+      - outside-network
+      - internal-network
+  cuweb001:
+    image: nginx:stable-alpine
+    volumes:
+      - ./apps/web:/var/www/public
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - ${SRV_APP}
+    labels:
+      - "traefik.backend=${SRV_WEB}"
+      - "traefik.frontend.rule=Host:sisleme.${DOMAIN}"
+      - "traefik.docker.network=outside-network"
+      - "traefik.port=80"
+      - "traefik.frontend.entryPoints=https"
+    networks:
+      - outside-network
+      - internal-network
+volumes: 
+  apps:
+  db-data:
+networks:
+  internal-network:
+    external: false
+  outside-network:
+    external: true
