@@ -1,0 +1,14 @@
+version: '3.5'
+
+services:
+  spiderfoot:
+    build: 
+     context: ./dockerfile
+    image: spiderfoot:v1
+    restart: unless-stopped
+    ports: 
+      - '5001:5001'
+#     volumes: 
+#       - ./data:/home/spiderfoot
+# volumes: 
+#   data:
