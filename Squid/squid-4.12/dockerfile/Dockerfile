@@ -1,7 +1,8 @@
-FROM alpine:latest
+FROM alpine:edge
 LABEL maintainer="linux8a@gmail.com"
 
 RUN apk update \
+   && apk upgrade \
    && apk add squid curl bash which \
    && rm -rf /var/cache/apk/*
    

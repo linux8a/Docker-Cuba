@@ -3,17 +3,18 @@ version: '3.5'
 services:
   squid:
      build:
-      context: ./Dockerfile
+      context: ./dockerfile
       cache_from:
-        - alpine:latest
-     image: squid
-     hostname: cubsna001
+        - alpine:edge
+     image: squid-4.12:edge
+     hostname: ${hostname}
      container_name: squid
      ports:
       - "3128:3128"
      volumes:
       - ./squid/cache:/var/spool/squid
       - ./etc/squid.conf:/etc/squid/squid.conf:ro
+      - ./etc/allowsite:/etc/squid/allowsite
       - ./squid/log:/var/log/squid:rw
      restart: always
 volumes: 
