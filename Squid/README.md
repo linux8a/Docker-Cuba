@@ -1,4 +1,4 @@
-# Microservise squid 4.10
+# Microservise squid 4.12 (Stable)
 
 Aporte de Argenis Ochoa Gonzalez (@linux8a)
 
