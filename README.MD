@@ -2,6 +2,6 @@
 
 @linux8a linux8a@gmail.com :)
 
-Aportes realizado por los miembros de la comunidad Docker de cuba.
+Aportes realizado para los miembros de la comunidad Docker de cuba en Telegram
 
 

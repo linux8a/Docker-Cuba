@@ -1,0 +1,17 @@
+version: '3.5'
+
+services:
+  tshark:
+    build: 
+      context: ./
+    image: tshark:v1.alpine
+    cap_add:
+      - net_admin
+    network_mode: host
+    restart: always
+    privileged: true
+    command: '-i any -w capturatshak.pcap'
+    volumes: 
+      - ./data:/data
+volumes: 
+    data:

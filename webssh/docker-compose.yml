@@ -1,0 +1,9 @@
+version: '3.5'
+
+services:
+   webssh:
+     build:
+       context: .
+     image: webssh:v1
+     ports:
+       - 4330:8080

@@ -1,0 +1,17 @@
+version: '3.5'
+
+services:
+  tcpdump:
+    build: 
+      context: ./
+    image: tcpdump:v1.alpine
+    cap_add:
+      - net_admin
+    network_mode: host
+    restart: always
+    privileged: true
+    command: '-v -s0 -i any -w tcpdump.pcap'
+    volumes: 
+      - ./data:/data
+volumes: 
+    data:
