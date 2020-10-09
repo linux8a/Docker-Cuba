@@ -31,6 +31,6 @@ onHostRule = true
 [certificatesResolvers.myresolver.acme.tlsChallenge]
 
 [docker]
-domain = "lex-sa.cu"
+domain = "unixfree.org"
 watch = true
 network = "outside-network"
