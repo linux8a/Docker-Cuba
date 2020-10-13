@@ -14,4 +14,4 @@ docker run -it --rm d-tec:alpine3-12
 
 
 Website:
-https://github.com/linux8a/D-TECT-1/blob/working/Dockerfile
+https://github.com/linux8a/D-TECT-1/
