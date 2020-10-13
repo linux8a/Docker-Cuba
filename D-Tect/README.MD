@@ -16,5 +16,7 @@ Uso:
 docker run -it --rm d-tec:alpine3-12
 ```
 
+![Screenshot](./Screenshot.png)
+
 Website:
 https://github.com/linux8a/D-TECT-1/
