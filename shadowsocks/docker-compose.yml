@@ -1,0 +1,14 @@
+version: '3.5'
+
+services:
+  shadowsocks:
+    build: 
+      context: ./dockerfile 
+    image: shadowsocks:alpine
+    ports:
+      - '8388:8388/tcp'
+      - '8388:8388/udp'
+    environment:
+      METHOD: ${METHOD}
+      PASSWORD: ${PASSWORD}
+    restart: always
