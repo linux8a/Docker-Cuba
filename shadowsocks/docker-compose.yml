@@ -11,4 +11,5 @@ services:
     environment:
       METHOD: ${METHOD}
       PASSWORD: ${PASSWORD}
+      IPEXTERNA: ${IPEXTERNA}
     restart: always
