@@ -35,3 +35,8 @@ Disfruten. :)
 
 Sole soy el creador del docker-compose.yml . Nada mas. La imagen es la oficial de telegram.
 Imagen oficial: https://hub.docker.com/r/telegrammessenger/proxy/
+
+
+* Donacion:
+
+![Donacion](../.donacion.png)

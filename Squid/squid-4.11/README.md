@@ -25,3 +25,8 @@ ip port 3128
 
 
 ;)
+
+
+* Donacion:
+
+![Donacion](../../.donacion.png)

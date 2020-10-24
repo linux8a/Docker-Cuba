@@ -22,3 +22,9 @@ sFlowTrend™ is a free, graphical network and server monitoring tool. sFlowTren
 sFlowTrend-Pro is a Java application, which monitors sFlow® enabled network switches, routers and hosts. It is designed to be easy to install and use, and to allow network and host problems to be understood and resolved quickly. Summaries and detail of network traffic can be displayed for the whole network, on a per-switch or per-interface level, thresholds used to provide alerts to abnormal traffic conditions, and historical traffic patterns reviewed to determine when changes occurred. Host performance metrics can be monitored for an entire data centre.
 
 Reference: https://inmon.com/
+
+
+
+* Donacion:
+
+![Donacion](../.donacion.png)

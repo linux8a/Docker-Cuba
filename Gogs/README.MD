@@ -57,3 +57,9 @@ Automated backups with retention policy:
 
     BACKUP_INTERVAL controls how often the backup job runs and supports interval in hours (h), days (d), and months (M), eg. 3h, 7d, 3M. The lowest possible value is one hour (1h).
     BACKUP_RETENTION supports expressions in minutes (m) and days (d), eg. 360m, 2d. The lowest possible value is 60 minutes (60m).
+
+
+
+* Donacion:
+
+![Donacion](../.donacion.png)

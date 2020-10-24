@@ -1,4 +1,4 @@
-# Microservise squid 4.12 (Stable)
+# Microservise squid 4.13 (Stable)
 
 Aporte de Argenis Ochoa Gonzalez (@linux8a)
 
@@ -13,3 +13,8 @@ ip port 3128
 
 
 ;)
+
+
+* Donacion:
+
+![Donacion](../.donacion.png)

@@ -40,6 +40,9 @@ or docker cli
    sudo docker run --rm spiderfoot -m unittest discover -s test/unit
 ```
 
+* Donacion:
+
+![Donacion](../.donacion.png)
 
 ### Fork :)
 

@@ -9,3 +9,9 @@ docker-compose up -d
 Detalle:
 
 Para balancear mis proxy squid :)
+
+
+
+* Donacion:
+
+![Donacion](../.donacion.png)

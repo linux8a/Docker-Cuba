@@ -35,3 +35,9 @@ docker-compose logs shadowsocks
 
 
 :-)
+
+
+
+* Donacion:
+
+![Donacion](../.donacion.png)

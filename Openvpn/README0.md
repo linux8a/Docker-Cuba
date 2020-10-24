@@ -19,3 +19,8 @@ docker build -t openvpn-alpine -f ./Dockerfile .
 
 push "route 192.168.66.0 255.255.255.0"
 push "dhcp-option DNS 192.168.66.101"
+
+
+* Donacion:
+
+![Donacion](../.donacion.png)

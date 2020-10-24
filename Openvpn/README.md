@@ -69,3 +69,9 @@ The revoke-full script will generate a CRL (certificate revocation list) file ca
 The file should be copied to a directory where the OpenVPN server can access it, then CRL verification should be enabled in the server configuration:
 
 crl-verify crl.pem
+
+
+
+* Donacion:
+
+![Donacion](../.donacion.png

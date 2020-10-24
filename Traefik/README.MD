@@ -59,3 +59,9 @@ labels:
       - "traefik.frontend.rule=Host:chat.unixfree.org"
       - "traefik.docker.network=outside-network"
       - "traefik.port=8065"
+
+
+
+* Donacion:
+
+![Donacion](../.donacion.png)

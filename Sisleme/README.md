@@ -22,8 +22,16 @@ apps
 
 copiar envexamples 
 
+```
 cp envexamples .env 
-
+```
   # correr
 
+```
   docker-compose up -d
+```
+
+  
+* Donacion:
+
+![Donacion](../.donacion.png)

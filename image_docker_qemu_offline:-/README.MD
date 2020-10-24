@@ -16,3 +16,7 @@ Idea sugerida por @smeagol1989:
 Creado e implementado por @linux8a (Argenis Ochoa Gonzalez):
   - Docker, docker-compose, qemu, git,bridge,bridge-utils, vlan,kimchi
 
+
+* Donacion:
+
+![Donacion](../.donacion.png)

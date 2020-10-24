@@ -25,3 +25,9 @@ Uso:
 Edita el archivo inventory y agrega los servidores a escanear.(Los server deben de tener la llave publica ssh del usuario a ejecutar [ssh-copy-id -i ~/.ssh/id_rsa.pub user@[IP of the management system]]) Edita el check_spectre-meltdown.yml y en host pon el alias o grupo de tu inventary
 
 ansible-playbook check_spectre-meltdown.yml
+
+
+
+* Donacion:
+
+![Donacion](../.donacion.png)

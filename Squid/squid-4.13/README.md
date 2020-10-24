@@ -1,4 +1,4 @@
-# Microservise squid 4.12 [version stable]
+# Microservise squid 4.13 [version stable]
 * Argenis Ochoa Gonzalez (@linux8a)
 
 1. This now execute
@@ -25,3 +25,8 @@ ip port 3128
 
 
 ;)
+
+
+* Donacion:
+
+![Donacion](../../.donacion.png)

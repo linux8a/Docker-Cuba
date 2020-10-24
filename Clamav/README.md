@@ -7,3 +7,8 @@ Aporte de Argenis Ochoa Gonzalez (@linux8a)
 
 Status (develop) desarrollo.
 Notas: ha veces tiene problemas al descargar las actualizaciones diarias. investigando forum para solucionarlo.
+
+
+* Donacion:
+
+![Donacion](../.donacion.png)

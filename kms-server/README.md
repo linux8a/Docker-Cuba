@@ -47,6 +47,10 @@ cscript ospp.vbs /act
 cscript ospp.vbs /dstatusall
 ```
 
+* Donacion:
+
+![Donacion](../.donacion.png)
+
 ## 
 Numbers|Product names
 :-|-
