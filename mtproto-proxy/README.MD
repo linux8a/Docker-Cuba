@@ -33,5 +33,5 @@ nota: Si cambiamos el puerto debemos a la hora de copiar la config ajustarlo man
 
 Disfruten. :)
 
-Sole soy el creador del docker-compose.yml . Nada mas. La imagen es la ofivial de telegram.
+Sole soy el creador del docker-compose.yml . Nada mas. La imagen es la oficial de telegram.
 Imagen oficial: https://hub.docker.com/r/telegrammessenger/proxy/
