@@ -24,4 +24,4 @@ https://github.com/linux8a/D-TECT-1/
 
 * Donacion:
 
-![Donacion](../.donacion.png
+![Donacion](../.donacion.png)

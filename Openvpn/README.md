@@ -74,4 +74,4 @@ crl-verify crl.pem
 
 * Donacion:
 
-![Donacion](../.donacion.png
+![Donacion](../.donacion.png)
