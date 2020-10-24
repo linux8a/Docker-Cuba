@@ -16,4 +16,4 @@ docker run -it --rm ab -n 100 -c 10 https://lawebquedeseastestear.com/
 
 * Donacion:
 
-![Donacion](../.donation.png)
+![Donacion](../.donacion.png)
