@@ -10,5 +10,4 @@ Notas: ha veces tiene problemas al descargar las actualizaciones diarias. invest
 
 
 * Donacion:
-
 ![Donacion](../.donacion.png)
