@@ -13,7 +13,7 @@ ENV TIMEOUT     300
 ENV TZ UTC
 ENV ARGS=
 
-RUN apk add build-base libffi-dev openssl \
+RUN apk add build-base libffi-dev openssl libqrencode \
     && python3 -m pip install --upgrade pip \
     && pip install shadowsocks \
     && rm -rf /root/.cache/*i \
