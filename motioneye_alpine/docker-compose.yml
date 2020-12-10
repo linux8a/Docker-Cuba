@@ -1,0 +1,28 @@
+version: "3.5"
+services:
+  motioneye:
+    build:
+      context: ./dockerfile/ 
+    image: motioneye:alpine
+    # ports:
+    #   - "8081:8081"
+    #   - "8765:8765"
+    labels: 
+      - "traefik.backend=motioneye"
+      - "traefik.frontend.rule=Host:dvr.unixfree.org"
+      - "traefik.docker.network=outside-network"
+      - "traefik.port=8765"
+      - "traefik.frontend.entryPoints=https"
+    networks:
+       outside-network:
+    volumes:
+      - ./etc:/etc/motioneye
+      - ./data:/var/lib/motioneye
+
+volumes:
+  etc:
+  data:
+
+networks:
+    outside-network:
+      external: true
