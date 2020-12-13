@@ -94,7 +94,7 @@
         "version": "v5.1.0"
     },
     "symfony/http-kernel": {
-        "version": "v5.1.0"
+        "version": "v5.1.5"
     },
     "symfony/polyfill-intl-grapheme": {
         "version": "v1.17.0"
