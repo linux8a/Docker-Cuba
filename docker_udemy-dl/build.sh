@@ -1,3 +1,3 @@
 #!/bin/sh
 
-docker build -t undemy-dl -f ./Dockerfile .
+docker build -t udemy-dl -f ./Dockerfile .
