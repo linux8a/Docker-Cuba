@@ -1,0 +1,1 @@
+5 22 * * * /bin/mirror_clamav.sh
