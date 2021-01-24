@@ -4,7 +4,7 @@ Aporte de Argenis Ochoa Gonzalez (@linux8a)
 
 
 *  
-![Mirror local clamav Database descargando desde sitio oficial  ](./mirror_clamav)
+[Mirror local clamav Database descargando desde sitio oficial  ](./mirror_clamav)
 
 Uso
 
@@ -14,7 +14,7 @@ docker-compose up -d
 
 * 
 
-![Mirror local clamav Database descargando desde un mirror  ](./mirror_clamav_for_Cuba)
+[Mirror local clamav Database descargando desde un mirror  ](./mirror_clamav_for_Cuba)
 
 Uso
 
