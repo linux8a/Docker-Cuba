@@ -9,19 +9,19 @@ AWX es una interfaz web para poder administrar nuestros roles que hemos creado e
 ```
 echo "awk" > etc/SECRET_KEY
 ```
-* Copy envexamples
+* Copiar envexamples
 
 ```
 cp envexamples .env
 ```
 
-* Run  Microservice
+* Ejecutamos nuestro  Microservice
 
 ```
 docker-compose up -d
 ```
 
-* Permition redis
+* Setear permisos redis
 
 ```
 chmod 777 data/redis_socket -Rv
@@ -38,11 +38,14 @@ Set admin user
 docker-compose exec web awx-manage createsuperuser --username admin
 ```
 
+Felicidades ya tenemos nuestra ansible AWX 
+
 #Screenshot
 
 ![Login](./images/AWK_login.png)
 
 ![Dashboard](./images/AWK_dashboard.png)
+
 
 Referencia:
 git clone https://github.com/ansible/awx.git
