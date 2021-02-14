@@ -1,0 +1,5 @@
+POSTGRES_USER=awx
+POSTGRES_PASSWORD=awxpass
+POSTGRES_DB=awx
+user=root
+domain=unixfree.org
