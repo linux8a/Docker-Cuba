@@ -1,4 +1,4 @@
-FROM python
+FROM python:3.8-slim
 
 LABEL org.opencontainers.image.title="Megaudemy-dl" \
       org.opencontainers.image.authors="Argenis Ochoa Gonzalez <linux8a@gmail.com>" \
