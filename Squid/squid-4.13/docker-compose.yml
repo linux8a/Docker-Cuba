@@ -7,7 +7,6 @@ services:
       cache_from:
         - alpine:edge
      image: squid-4.13:edge
-     hostname: ${hostname}
      container_name: squid
      ports:
       - "3128:3128"

@@ -1,4 +1,0 @@
-1591318853.398   4999 172.25.0.1 TCP_MISS_ABORTED/000 0 GET http://detectportal.firefox.com/success.txt - HIER_NONE/- -
-1591318854.043    643 172.25.0.1 TCP_MISS/200 489 GET http://detectportal.firefox.com/success.txt - HIER_DIRECT/23.223.245.49 text/plain
-1591318874.771  10004 172.25.0.1 TCP_TUNNEL/200 2716 CONNECT www.gstatic.com:443 - HIER_DIRECT/172.217.2.131 -
-1591318875.892   2003 172.25.0.1 TCP_MISS_ABORTED/000 0 POST http://ocsp.pki.goog/gts1o1 - HIER_NONE/- -
