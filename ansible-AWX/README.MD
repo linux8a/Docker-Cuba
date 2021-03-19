@@ -51,6 +51,10 @@ Referencia:
 git clone https://github.com/ansible/awx.git
 git clone https://github.com/ansible/awx-logos.git
 
-* Donacion
+* Donacion:
 
-![Donacion](../.donacion.png)
+![Donacion](../.donacion_enzona.png)
+
+o un usd en bitcoin
+
+![Donacion](../.donacion_bitcoin.png

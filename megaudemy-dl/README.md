@@ -43,3 +43,12 @@ cd megaudemy-dl.git
 ![](./images/Screenshot2.png)
 
 ![](./images/Screenshot3.png)
+
+
+* Donacion:
+
+![Donacion](../.donacion_enzona.png)
+
+o un usd en bitcoin
+
+![Donacion](../.donacion_bitcoin.png
