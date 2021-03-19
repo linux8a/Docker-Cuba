@@ -21,4 +21,4 @@ ip port 3128
 
 o un usd en bitcoin
 
-![Donacion](../.donacion_bitcoin.png
+![Donacion](../.donacion_bitcoin.png)

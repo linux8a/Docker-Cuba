@@ -57,4 +57,4 @@ git clone https://github.com/ansible/awx-logos.git
 
 o un usd en bitcoin
 
-![Donacion](../.donacion_bitcoin.png
+![Donacion](../.donacion_bitcoin.png)
