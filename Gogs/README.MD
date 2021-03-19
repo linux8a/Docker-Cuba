@@ -59,7 +59,10 @@ Automated backups with retention policy:
     BACKUP_RETENTION supports expressions in minutes (m) and days (d), eg. 360m, 2d. The lowest possible value is 60 minutes (60m).
 
 
-
 * Donacion:
 
-![Donacion](../.donacion.png)
+![Donacion](../.donacion_enzona.png)
+
+o un usd en bitcoin
+
+![Donacion](../.donacion_bitcoin.png)

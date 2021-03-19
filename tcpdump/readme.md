@@ -37,7 +37,10 @@ or use docker
 
 docker run --rm -it --tty --net=host -v $PWD:/data tcpdump -i any
 
-
 * Donacion:
 
-![Donacion](../.donacion.png)
+![Donacion](../.donacion_enzona.png)
+
+o un usd en bitcoin
+
+![Donacion](../.donacion_bitcoin.png)

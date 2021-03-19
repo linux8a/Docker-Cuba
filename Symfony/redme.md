@@ -30,7 +30,10 @@ DOMAIN=Tu dominio
 cd apps
 docker run --rm -v ${PWD}::/var/www/ --network outside-network -it symfony-php:fpm-alpine sh -c "composer create-project symfony/skeleton my-symfony-app" 
 
-
 * Donacion:
 
-![Donacion](../.donacion.png)
+![Donacion](../.donacion_enzona.png)
+
+o un usd en bitcoin
+
+![Donacion](../.donacion_bitcoin.png)

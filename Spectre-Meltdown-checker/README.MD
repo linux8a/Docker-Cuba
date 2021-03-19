@@ -27,7 +27,10 @@ Edita el archivo inventory y agrega los servidores a escanear.(Los server deben 
 ansible-playbook check_spectre-meltdown.yml
 
 
-
 * Donacion:
 
-![Donacion](../.donacion.png)
+![Donacion](../.donacion_enzona.png)
+
+o un usd en bitcoin
+
+![Donacion](../.donacion_bitcoin.png)

@@ -71,7 +71,10 @@ The file should be copied to a directory where the OpenVPN server can access it,
 crl-verify crl.pem
 
 
-
 * Donacion:
 
-![Donacion](../.donacion.png)
+![Donacion](../.donacion_enzona.png)
+
+o un usd en bitcoin
+
+![Donacion](../.donacion_bitcoin.png)

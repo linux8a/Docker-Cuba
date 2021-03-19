@@ -21,7 +21,10 @@ docker run -it --rm d-tec:alpine3-12
 Website:
 https://github.com/linux8a/D-TECT-1/
 
-
 * Donacion:
 
-![Donacion](../.donacion.png)
+![Donacion](../.donacion_enzona.png)
+
+o un usd en bitcoin
+
+![Donacion](../.donacion_bitcoin.png)

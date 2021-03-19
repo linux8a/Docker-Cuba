@@ -49,7 +49,11 @@ cscript ospp.vbs /dstatusall
 
 * Donacion:
 
-![Donacion](../.donacion.png)
+![Donacion](../.donacion_enzona.png)
+
+o un usd en bitcoin
+
+![Donacion](../.donacion_bitcoin.png)
 
 ## 
 Numbers|Product names
