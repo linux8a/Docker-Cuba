@@ -1,0 +1,26 @@
+version: '3.1'
+
+services:
+  mirror-alpine:
+    build:
+      context: ./dockerfile
+    image: alpine-mirror-repo:v1
+    volumes:
+      - ./data:/html/ 
+    restart: always
+    networks: 
+      - outside-network
+    labels: 
+      - "traefik.backend=mirror-alpine"
+      - "traefik.frontend.rule=Host:mirror-alpine.duckdns.org"
+      - "traefik.docker.network=outside-network"
+      - "traefik.port=80"
+      - "traefik.frontend.entryPoints=https"  
+    environment:
+      - VIRTUAL_HOST
+volumes:
+  data:
+networks: 
+  outside-network:
+    external: true
+    

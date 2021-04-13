@@ -1,0 +1,1 @@
+2 22 * * * /bin/rsync_mirror.sh
