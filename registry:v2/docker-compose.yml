@@ -1,0 +1,23 @@
+version: '3.5'
+
+services: 
+     registry:
+        image: registry:2
+        container_name: registry
+        networks:
+            - hub_network
+        restart: always
+        ports: 
+            - '5000:5000'
+        volumes: 
+            - ./registry-data:/var/lib/registry
+            - ./etc/config.yml:/etc/docker/registry/config.yml
+                #   - ./auth:/auth
+        environment:
+        # Si deseas usar otro registry proxy remote cambia la url apuntando al que desees.
+         REGISTRY_PROXY_REMOTEURL: "https://docker.uclv.cu"
+         #HTTP_PROXY: ip:3128
+         #HTTPS_PROXY: ip:3128
+         #NO_PROXY: localhost,127.0.0.1,10.0.0.7
+         #no_proxy: localhost,127.0.0.1,10.0.0.7
+
