@@ -1,0 +1,56 @@
+version: '3.5'
+
+services:
+  nginx:
+    image: registry:5000/nginx:stable-alpine
+    restart: always
+    volumes:
+      - ./html:/var/www/html
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    networks:
+      - outside-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.lb-joomla.entrypoints=websecure"
+      - "traefik.http.routers.lb-joomla.rule=Host(`joomla.unixfree.org`)"
+      - "traefik.http.routers.lb-joomla.tls.certresolver=lets-encr"
+      - "traefik.http.routers.lb-joomla.tls.domains[0].main=joomla.unixfree.org"
+      - "traefik.http.services.lb-odoo_service.loadbalancer.server.port=80" 
+      - "traefik.docker.network=outside-network" 
+  joomla:
+    image: registry:5000/joomla:php7.4-fpm-alpine
+    restart: always
+    depends_on: 
+      - joomladb
+    links:
+      - joomladb
+    environment:
+      - JOOMLA_DB_HOST=joomladb:3306
+      - JOOMLA_DB_USER=root
+      - JOOMLA_DB_PASSWORD=secretpassword
+      - JOOMLA_DB_NAME=db
+    volumes:
+    - ./html:/var/www/html
+    networks: 
+      - outside-network
+      - internal-network
+  joomladb:
+    image: registry:5000/mariadb:10.4.8
+    restart: always
+    networks:
+      - internal-network
+    labels:
+      - "traefik.enable=false"
+    environment:
+      - MYSQL_DATABASE=db
+      - MYSQL_ROOT_PASSWORD=secretpassword
+    volumes:
+      - ./db_data:/var/lib/mysql
+volumes: 
+  html:
+  db-data:
+networks:
+  internal-network:
+    external: false
+  outside-network:
+    external: true
