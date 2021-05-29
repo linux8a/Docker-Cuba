@@ -1,0 +1,45 @@
+
+version: "3"
+
+# https://github.com/pi-hole/docker-pi-hole/blob/master/README.md
+
+services:
+  pihole:
+    container_name: pihole
+    image: registry:5000/pihole/pihole:latest
+    # For DHCP it is recommended to remove these ports and instead add: network_mode: "host"
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "67:67/udp"
+    #   - "80:80/tcp"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.pihole.entrypoints=websecure"
+      - "traefik.http.routers.pihole.rule=Host(`pihole.unixfree.org`)"
+      - "traefik.http.routers.pihole.tls.certresolver=lets-encr"
+      - "traefik.http.routers.pihole.tls.domains[0].main=pihole.unixfree.org"
+      - "traefik.http.services.pihole_service.loadbalancer.server.port=80" 
+      - "traefik.docker.network=outside-network"
+    networks:
+      - outside-network
+    environment:
+      TZ: 'America/Havana'
+      ADMIN_EMAIL: linux8a@gmail.com
+      # PIHOLE_DNS_: 1.1.1.1;1.0.0.1
+      # WEBPASSWORD: 'set a secure password here or it will be random'
+    # Volumes store your data between container upgrades
+    volumes:
+      - './etc-pihole/:/etc/pihole/'
+      - './etc-dnsmasq.d/:/etc/dnsmasq.d/'
+      # run `touch ./var-log/pihole.log` first unless you like errors
+      # - './var-log/pihole.log:/var/log/pihole.log'
+    # Recommended but not required (DHCP needs NET_ADMIN)
+    #   https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
+    cap_add:
+      - NET_ADMIN
+    restart: always
+
+networks: 
+  outside-network:
+    external: true
