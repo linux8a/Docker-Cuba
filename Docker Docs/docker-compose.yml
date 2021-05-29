@@ -1,0 +1,7 @@
+version: "3.7"
+services:
+    docker_docs:
+        image: docs/docker.github.io
+        container_name: docker_docs
+        expose:
+            - "4000"

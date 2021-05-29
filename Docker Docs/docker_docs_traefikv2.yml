@@ -1,0 +1,21 @@
+version: "3.7"
+services:
+    docker_docs:
+        image: registry:5000/docs/docker.github.io
+        container_name: docker_docs
+        expose:
+            - "4000"
+        labels:
+          - "traefik.enable=true"
+          - "traefik.http.routers.docker-docs.entrypoints=websecure"
+          - "traefik.http.routers.docker-docs.rule=Host(`docker-docs.unixfree.org`)"
+          - "traefik.http.routers.docker-docs.tls.certresolver=lets-encr"
+          - "traefik.http.routers.docker-docs.tls.domains[0].main=docker-docs.unixfree.org"
+          - "traefik.http.services.docker-docs_service.loadbalancer.server.port=4000" 
+          - "traefik.docker.network=outside-network"
+        networks:
+            - outside-network
+      
+networks:
+  outside-network:
+    external: true
