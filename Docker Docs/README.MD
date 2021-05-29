@@ -8,7 +8,7 @@ uso:
 docker-compose up -d
 ```
 
-![screenshot](./screenshot.png)
+![screenshot](Screenshot.png)
 
 
 * Donacion:
