@@ -1,0 +1,11 @@
+version: '3.3'
+
+services:
+  documentacionimagenesdocker:
+    image: linux8a/docsimagesdocker:v2 
+    restart: always
+    ports:
+      - 8000:8000
+    volumes:
+      - /etc/localtime:/etc/localtime:ro  
+      - /etc/timezone:/etc/timezone:ro

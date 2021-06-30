@@ -1,0 +1,25 @@
+version: '3.3'
+
+services:
+  nginx001:
+    image: nginx:stable-alpine
+    restart: always
+    volumes:
+      - ./etc/nginx.conf:/etc/nginx/nginx.conf
+    networks:
+      - outside-network
+    environment:
+      - VIRTUAL_HOST
+    ports: 
+      - 192.168.1.200:80:80
+  documentacionimagenesdocker:
+    image: linux8a/docsimagesdocker:v2 
+    restart: always
+    networks:
+      - outside-network
+    volumes:
+      - /etc/localtime:/etc/localtime:ro  
+      - /etc/timezone:/etc/timezone:ro
+networks:
+  outside-network:
+    external: true

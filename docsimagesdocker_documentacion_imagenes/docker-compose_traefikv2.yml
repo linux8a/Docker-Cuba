@@ -1,0 +1,31 @@
+version: '3.3'
+
+services:
+  nginx001:
+    image: nginx:stable-alpine
+    restart: always
+    volumes:
+      - ./etc/nginx.conf:/etc/nginx/nginx.conf
+    networks:
+      - outside-network
+    environment:
+      - VIRTUAL_HOST
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.nginx001.entrypoints=websecure"
+      - "traefik.http.routers.nginx001.rule=Host(`docsimagenesoficiales.unixfree.org`)"
+      - "traefik.http.routers.nginx001.tls.certresolver=lets-encr"
+      - "traefik.http.routers.nginx001.tls.domains[0].main=docsimagenesoficiales.unixfree.org"
+      - "traefik.http.services.nginx001_service.loadbalancer.server.port=80" 
+      - "traefik.docker.network=outside-network"
+  documentacionimagenesdocker:
+    image: linux8a/docsimagesdocker:v2 
+    restart: always
+    networks:
+      - outside-network
+    volumes:
+      - /etc/localtime:/etc/localtime:ro  
+      - /etc/timezone:/etc/timezone:ro
+networks:
+  outside-network:
+    external: true
