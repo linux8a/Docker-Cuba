@@ -19,7 +19,7 @@ services:
       - "traefik.http.services.nginx001_service.loadbalancer.server.port=80" 
       - "traefik.docker.network=outside-network"
   documentacionimagenesdocker:
-    image: linux8a/docsimagesdocker:v2 
+    image: linux8a/docsimagesdocker:v2.0.1 
     restart: always
     networks:
       - outside-network
