@@ -64,7 +64,7 @@ docker-compose -f docker-compose_dev.yml
 * Uso desde docker cli
 
 ```
-docker run -d -p 8000:8000 linux8a/docsimagesdocker:v2
+docker run -d -p 8000:8000 linux8a/docsimagesdocker:v2.0.1
 ```
 
 * Donacion:
