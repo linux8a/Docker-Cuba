@@ -4,7 +4,7 @@ Aporte de Argenis Ochoa Gonzalez (@linux8a)
 
 ## Descripcion
 
-Esta microimagen esta hecha para tener la ayuda completa de las imagenes oficiales de Docker desconectado; sus opciones, tag etc. Esta pensada para usar por los de la comunidad docker de cuba. Pues para acceder https://hub.docker.com/ es necesario usar vpn. Aca usamos el github official de ayuda de las imagenes y la empaquetamos con mkdocs.
+Esta imagen esta hecha para tener la ayuda completa de las imagenes oficiales de Docker desconectado; sus opciones, tag etc. Esta pensada para usar por los de la comunidad docker de cuba. Pues para acceder https://hub.docker.com/ es necesario usar vpn. Aca usamos el github official de ayuda de las imagenes y la empaquetamos con mkdocs.
 
 ## Tags
 
