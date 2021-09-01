@@ -10,14 +10,12 @@ services:
     restart: always
     networks: 
       - outside-network
-    labels:
-       - "traefik.enable=true"
-       - "traefik.http.routers.mkdocs.entrypoints=websecure"
-       - "traefik.http.routers.mkdocs.rule=Host(`mirror-clamav.unixfree.org`)"
-       - "traefik.http.routers.mkdocs.tls.certresolver=lets-encr"
-       - "traefik.http.routers.mkdocs.tls.domains[0].main=mirror-clamav.unixfree.org"
-       - "traefik.http.services.mkdocs_service.loadbalancer.server.port=80"
-       - "traefik.docker.network=outside-network" 
+    labels: 
+      - "traefik.backend=mirrorclamav"
+      - "traefik.frontend.rule=Host:mirror-clamav.unixfree.org"
+      - "traefik.docker.network=outside-network"
+      - "traefik.port=80"
+      - "traefik.frontend.entryPoints=https"  
     environment:
       - VIRTUAL_HOST
     deploy:
