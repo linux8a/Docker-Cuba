@@ -10,7 +10,7 @@ labels:
 
 
 
-  ```
+```
   services:
   watchtower:
     command: --label-enable --cleanup --interval 300
@@ -34,9 +34,10 @@ labels:
       # alternative for notification via pushover
       #- WATCHTOWER_NOTIFICATIONS=shoutrrr
       #- WATCHTOWER_NOTIFICATION_URL=pushover://shoutrrr:${PO_TOKEN}@${PO_USERKEY}
-    ```
+```
 
-    env
+env
+
 ```
 EMAIL_FROM=user@gmail.com
 WATCHTOWER_EMAIL_TO=toimaul@gmail.com
@@ -49,10 +50,9 @@ SMTP_PASSWORD=passwd
 Si deseas usar el cron  asignandole una hora exacta puedes usar este environment
 
 ```
-    environment:
-      WATCHTOWER_SCHEDULE: 0 0 2 * * *
-      TZ: America/Havana
-
+environment:
+  WATCHTOWER_SCHEDULE: 0 0 2 * * *
+  TZ: America/Havana
 ```
 
 * Donacion:
