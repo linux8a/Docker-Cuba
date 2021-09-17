@@ -46,6 +46,15 @@ SMTP_USER=user@gmail.com
 SMTP_PASSWORD=passwd
 ```
 
+Si deseas usar el cron  asignandole una hora exacta puedes usar este environment
+
+```
+    environment:
+      WATCHTOWER_SCHEDULE: 0 0 2 * * *
+      TZ: America/Havana
+
+```
+
 * Donacion:
 
 ![Donacion](../.donacion_enzona.png)
