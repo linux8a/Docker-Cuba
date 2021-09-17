@@ -17,7 +17,6 @@ labels:
     image: containrrr/watchtower
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
-    network_mode: none
     restart: always
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
