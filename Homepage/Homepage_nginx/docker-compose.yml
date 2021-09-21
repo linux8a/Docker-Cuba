@@ -1,0 +1,29 @@
+version: '3.1'
+
+services:
+  homer-homepage:
+    image: nginx:stable-alpine
+    volumes:
+      - ./homer:/usr/share/nginx/html 
+    restart: always
+    ports: 
+      - 8080:80
+    labels: 
+      # Update imagen fron watchtower
+      - "com.centurylinklabs.watchtower.enable=true"
+    environment:
+      - VIRTUAL_HOST
+    deploy:
+      resources:
+        limits:
+          cpus: '0.30'
+          memory: 512M
+        reservations:
+          cpus: '0.1'
+          memory: 64M
+volumes:
+  data:
+  etc:  
+networks: 
+  outside-network:
+    external: true

@@ -1,0 +1,33 @@
+version: '3.1'
+services:
+  homer:
+    image: b4bz/homer
+    volumes:
+      - ./assets/:/www/assets
+    environment:
+     - UID=1000
+     - GID=1000
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: '0.30'
+          memory: 128M
+        reservations:
+          cpus: '0.1'
+          memory: 64M
+    networks: 
+      - outside-network
+    labels: 
+      - "traefik.enable=true"
+      - "traefik.http.routers.homepage.entrypoints=websecure"
+      - "traefik.http.routers.homepage.rule=Host(`dashboard.unixfree.org`)"
+      - "traefik.http.routers.homepage.tls.certresolver=lets-encr"
+      - "traefik.http.routers.homepage.tls.domains[0].main=dashboard.unixfree.org"
+      - "traefik.http.services.homepage_service.loadbalancer.server.port=8080"
+      - "traefik.docker.network=outside-network"
+      # Update imagen fron watchtower
+      - "com.centurylinklabs.watchtower.enable=true"
+networks: 
+  outside-network:
+    external: true

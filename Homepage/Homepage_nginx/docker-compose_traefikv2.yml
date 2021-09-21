@@ -1,0 +1,36 @@
+version: '3.1'
+
+services:
+  homer-homepage:
+    image: nginx:stable-alpine
+    volumes:
+      - ./homer:/usr/share/nginx/html 
+    restart: always
+    networks: 
+      - outside-network
+    labels: 
+      - "traefik.enable=true"
+      - "traefik.http.routers.homepage.entrypoints=websecure"
+      - "traefik.http.routers.homepage.rule=Host(`dashboard.unixfree.org`)"
+      - "traefik.http.routers.homepage.tls.certresolver=lets-encr"
+      - "traefik.http.routers.homepage.tls.domains[0].main=dashboard.unixfree.org"
+      - "traefik.http.services.homepage_service.loadbalancer.server.port=80"
+      - "traefik.docker.network=outside-network"
+      # Update imagen fron watchtower
+      - "com.centurylinklabs.watchtower.enable=true"
+    environment:
+      - VIRTUAL_HOST
+    deploy:
+      resources:
+        limits:
+          cpus: '0.30'
+          memory: 512M
+        reservations:
+          cpus: '0.1'
+          memory: 64M
+volumes:
+  data:
+  etc:  
+networks: 
+  outside-network:
+    external: true

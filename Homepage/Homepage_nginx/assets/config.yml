@@ -1,0 +1,145 @@
+---
+# Homepage configuration
+# See https://fontawesome.com/icons for icons options
+
+title: "Unixfree - Homepage"
+subtitle: "Homer"
+logo: "/assets/icons/logo.png"
+header: false
+footer: false
+columns: 4
+theme: default
+colors:
+  light:
+    highlight-primary: "transparent" #"#d6eaf8"
+    highlight-secondary: "transparent" #"#85c1e9"
+    highlight-hover: "#5dade2"
+    background: "#f5f5f5"
+    card-background: "#ffffff"
+    text: "black"
+    text-header: "#ffffff"
+    text-title: "#303030"
+    text-subtitle: "#424242"
+    card-shadow: black #rgba(0, 0, 0, 0.4)
+    link-hover: "#363636"
+    background-image: "/assets/icons/wallpaper.jpg"
+  dark:
+    highlight-primary: "#d6eaf8"
+    highlight-secondary: "#17202a"
+    highlight-hover: "#abb2b9"
+    background: "#d6eaf8" #"#131313"
+    card-background: "#2b2b2b"
+    text: "white"
+    text-header: "#ffffff"
+    text-title: "#fafafa"
+    text-subtitle: "#f5f5f5"
+    card-shadow: white
+    link-hover: "#ffdd57"
+    background-image: "/assets/icons/wallpaper-dark.jpg"
+message:
+  content: '<form action="https://google.com/search" method="get"><input type="text" name="q" img="/assets/icons/google.png" placeholder="Buscar en Google" style="width: 100%" spellcheck="false" autofocus="true" onkeydown="handleKeyPress(event) "/></form>'
+links:
+  - name: "Web unixfree.org"
+    url: "https://www.unixfree.org"
+  - name: "Mail"
+    icon: "fas fa-envelope"
+    url: "https://gmail.com"
+services:
+  - name: "Git"
+    logo: "/assets/icons/Git_blue.png"
+    items:
+      - name: "GitLab"
+        logo: "/assets/icons/gitlab.png"
+        url: "#"
+        target: "_blank"
+      - name: "Linux8a Github"
+        logo: "/assets/icons/github.png"
+        url: "https://github.com/linux8a/"
+        target: "_blank"
+  
+  - name: "Infraestructura"
+    icon: "fas fa-cloud"
+    items:
+      - name: "Portainer"
+        logo: "/assets/icons/portainer.png"
+        subtitle: "Administracion de Docker via web"
+        url: "#"
+        target: "_blank"
+        tag: "manager administration admin"
+      - name: "Dasboard Traefik Dev"
+        logo: "/assets/icons/traefik.png"
+        subtitle: "Dasboard Monitor Traefik Develop"
+        url: "#"
+        target: "_blank"
+      - name: "Router Wifi"
+        icon: "fas fa-wifi"
+        subtitle: "Acceso al Router TP-Link"
+        url: "#"
+        target: "_blank"
+      - name: "Admistracion"
+        logo: "/assets/icons/manager-server.png"
+        subtitle: "Acceso Dashboard VM Desktop"
+        url: "#"
+        target: "_blank"
+        tag: "server manager administration admin"
+
+  - name: "Docker docs Offline"
+    logo: "/assets/icons/docker.png"
+    items:
+      - name: "Docker docs Local"
+        logo: "/assets/icons/docker.png"
+        subtitle: "Web local de docker"
+        url: "#"
+        target: "_blank" # optional html a tag target attribute
+      - name: "Docs images"
+        logo: "/assets/icons/docker-docs.png"
+        subtitle: "Documentacion imagenes oficiales"
+        url: "#"
+        target: "_blank"
+
+  - name: "Tickets"
+    logo: "/assets/icons/redmine.ico"
+    items:
+      - name: "Cd Redmine Local"
+        logo: "/assets/icons/redmine.ico"
+        subtitle: "Redmine de Casa"
+        url: "#"
+        target: "_blank" # optional html a tag target attribute
+
+  - name: "Index"
+    logo: "/assets/icons/index.png"
+    items:
+      - name: "Box Index"
+        logo: "/assets/icons/index.png"
+        url: "#"
+        target: "_blank"
+        tag: "index nginx"
+      - name: "Index Compresed"
+        logo: "/assets/icons/index.png"
+        url: "http://s28.bitdl.ir/Compresed/"
+        target: "_blank"
+        tag: "index nginx"
+
+  - name: "Cloud"
+    icon: "fas fa-cloud"
+    items:
+      - name: "Nextcloud"
+        logo: "/assets/icons/nextcloud.png"
+        url: "#"
+        target: "_blank"
+        tag: "cloud nube almacen"
+      - name: "Mega"
+        logo: "/assets/icons/mega.png"
+        url: "https://mega.nz"
+        target: "_blank"
+        tag: "cloud nube almacen"
+
+  - name: "Redes Sociales"
+    icon: "fas message"
+    items:
+      - name: "Whatsapp Web"
+        logo: "/assets/icons/whatsapp.png"
+        url: "https://web.whatsapp.com/"
+        target: "_blank"
+
+...
