@@ -21,9 +21,9 @@ services:
     labels: 
       - "traefik.enable=true"
       - "traefik.http.routers.homepage.entrypoints=websecure"
-      - "traefik.http.routers.homepage.rule=Host(`dashboard.unixfree.org`)"
+      - "traefik.http.routers.homepage.rule=Host(`$fqdns`)"
       - "traefik.http.routers.homepage.tls.certresolver=lets-encr"
-      - "traefik.http.routers.homepage.tls.domains[0].main=dashboard.unixfree.org"
+      - "traefik.http.routers.homepage.tls.domains[0].main=$fqdns"
       - "traefik.http.services.homepage_service.loadbalancer.server.port=8080"
       - "traefik.docker.network=outside-network"
       # Update imagen fron watchtower
