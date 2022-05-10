@@ -1,6 +1,8 @@
 # kms-server
 kms server. View list software compatible
 
+![size](./img/image.png)
+
 ## Run
 
 * Run docker-compose
@@ -12,7 +14,7 @@ $ docker-compose up -d
 * Run docker
 
 ```
-$ docker run -it -d -p 1688:1688 kms-server:v1.0
+$ docker run -it -d -p 1688:1688 linux8a/kms-server:v1.0
 ```
 
 ## Client usage:
