@@ -1,0 +1,5 @@
+# generate pwgen -s 20 1
+POSTGRES_PASSWORD=rjBVgpHKhIhaPFV1gSe7
+POSTGRES_USER=gitea
+POSTGRES_DB=gitea
+
