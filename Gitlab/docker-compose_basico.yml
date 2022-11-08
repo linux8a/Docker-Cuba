@@ -1,0 +1,19 @@
+version: '3'
+services:
+  gitlab:
+    image: 'gitlab/gitlab-ce:latest'
+    restart: unless-stopped
+    container_name: gitlab
+    hostname: 'gitlab.tudominio.com'
+    ports:
+      - '80:80'
+      - '443:443'
+      - '2222:22'
+    volumes:
+      - 'gitlab-config:/etc/gitlab'
+      - 'gitlab-logs:/var/log/gitlab'
+      - 'gitlab-data:/var/opt/gitlab'
+volumes: 
+  gitlab-config: {}
+  gitlab-logs: {}
+  gitlab-data: {}
