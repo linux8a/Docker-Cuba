@@ -1,6 +1,6 @@
 ##  Ideas
 
-@linux8a linux8a@gmail.com :)
+@linux8a linux8a@gmail.com ( ͡° ͜ʖ ͡°)
 
 ## Proyecto
 
