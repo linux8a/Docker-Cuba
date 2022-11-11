@@ -1,0 +1,34 @@
+version: '3.1'
+
+services:
+  admin-docker:
+    image: portainer/portainer-ce
+    volumes:
+      - ./data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: always
+    networks: 
+      - internal-network
+      - outside-network 
+    labels: 
+     - "traefik.enable=true"
+     - "traefik.http.routers.admindocker.entrypoints=websecure"
+     - "traefik.http.routers.admindocker.rule=Host(`admin-docker.unixfree.org`)"
+     - "traefik.http.routers.admindocker.tls.certresolver=lets-encr"
+     - "traefik.http.routers.admindocker.tls.domains[0].main=admin-docker.unixfree.org"
+     - "traefik.http.services.admindocker_service.loadbalancer.server.port=9000"
+     - "traefik.docker.network=outside-network"
+
+     # Edge
+    #  - "traefik.http.routers.edge.rule=Host(`edge.unixfree.org`)"
+    #  - "traefik.http.routers.edge.entrypoints=websecure"
+    #  - "traefik.http.services.edge.loadbalancer.server.port=8000"
+    #  - "traefik.http.routers.edge.service=edge"
+    #  - "traefik.http.routers.edge.tls.certresolver=lets-encr"
+volumes: 
+  data:
+networks: 
+  internal-network: 
+    external: false
+  outside-network:
+    external: true  
