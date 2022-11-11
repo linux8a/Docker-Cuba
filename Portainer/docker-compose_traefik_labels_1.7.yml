@@ -9,7 +9,7 @@ services:
     restart: always
     networks: 
       - internal-network
-      - traefik
+      - outsite-network
     labels: 
       - "traefik.backend=admin-docker"
       - "traefik.frontend.rule=Host:admin-docker.unixfree.org"
@@ -21,6 +21,5 @@ volumes:
 networks: 
   internal-network: 
     external: false
-  traefik:
-    external: 
-      name: outside-network  
+  outside-network:
+    external: true
