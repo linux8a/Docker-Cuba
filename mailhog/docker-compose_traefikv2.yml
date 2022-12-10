@@ -1,0 +1,22 @@
+version: "3"
+services:
+  mailhog:
+    image: mailhog/mailhog:latest
+    container_name: mailhog
+    restart: always
+    ports:
+      - 1025:1025
+      # - 8025:8025
+    networks:
+      - outside-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.mailhog.entrypoints=websecure"
+      - "traefik.http.routers.mailhog.rule=Host(`mailhog.127.0.0.1.nip.io`)"
+      - "traefik.http.routers.mailhog.tls.certresolver=lets-encr"
+      - "traefik.http.routers.mailhog.tls.domains[0].main=mailhog.127.0.0.1.nip.io"
+      - "traefik.http.services.mailhog_service.loadbalancer.server.port=8025" 
+      - "traefik.docker.network=outside-network"
+networks: 
+  outside-network:
+    external: true
