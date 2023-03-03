@@ -1,0 +1,16 @@
+version: "2.1"
+services:
+  nfs:
+    image: linux8a/nfs-server
+    container_name: nfs
+    restart: unless-stopped
+    privileged: true
+    cap_add:
+      - SYS_ADMIN
+      - SETPCAP
+    environment:
+      - SHARED_DIRECTORY=/data
+    volumes:
+      - ./data:/data
+    ports:
+      - 2049:2049
