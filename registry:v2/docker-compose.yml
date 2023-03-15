@@ -11,7 +11,6 @@ services:
             - '5000:5000'
         volumes: 
             - ./registry-data:/var/lib/registry
-            - ./etc/config.yml:/etc/docker/registry/config.yml
                 #   - ./auth:/auth
         environment:
         # Si deseas usar otro registry proxy remote cambia la url apuntando al que desees.
