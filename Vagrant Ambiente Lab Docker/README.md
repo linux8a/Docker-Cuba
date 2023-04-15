@@ -6,7 +6,7 @@ Vagrant permite a los usuarios crear y configurar entornos de desarrollo ligeros
 
 ## Ambiente reproducible
 
-* [Vagrant usando source uclv](./Vagrant%20source%20Universidad%20de%20uclv%20Cuba/)
+* [Vagrant usando source uclv](https://github.com/linux8a/Docker-Cuba/tree/master/Vagrant%20Ambiente%20Lab%20Docker/Vagrant%20source%20Universidad%20de%20uclv%20Cuba/Ubuntu)
 
     * Ubuntu 20.04
 
@@ -58,7 +58,7 @@ Vagrant permite a los usuarios crear y configurar entornos de desarrollo ligeros
 
         </details>
 
-* [Vagrant usando source oficial](./Vagrant%20source%20oficial/)
+* [Vagrant usando source oficial](https://github.com/linux8a/Docker-Cuba/tree/master/Vagrant%20Ambiente%20Lab%20Docker/Vagrant%20source%20oficial/Ubuntu)
     
     * Ubuntu 20.04
 
