@@ -1,0 +1,47 @@
+version: '3.5'
+
+services:
+  traefik:
+    image: traefik:v2.10.5
+    container_name: "traefik"
+    restart: always
+    hostname: "traefik"
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "./traefik.yml:/traefik.yml:ro"
+      - "./dynamic-config.yml/:/config/dynamic-config.yml:ro"
+      - "./certs:/etc/certs:ro"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.traefik=true"
+      - "traefik.http.routers.traefik.tls=true"
+      - "traefik.http.routers.traefik.tls.domains[0].main=*.unixfree.org"
+      - "traefik.http.routers.traefik.tls.domains[0].sans=*.unixfree.org"
+      ## HTTP REDIRECT
+      - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
+      - "traefik.http.routers.redirect-https.rule=hostregexp(`{host:.+}`)"
+      - "traefik.http.routers.redirect-https.entrypoints=web"
+      - "traefik.http.routers.redirect-https.middlewares=redirect-to-https"
+
+      - "traefik.http.routers.traefik1_router.rule=Host(`dasboard.unixfree.org`)"
+      - "traefik.http.middlewares.https_redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.traefik1_router.middlewares=https_redirect"
+      - "traefik.http.routers.traefik1_router.tls"
+      - "traefik.http.services.traefik1_service.loadbalancer.server.port=8080"
+      - "traefik.docker.network=outside-network"
+      # Update imagen fron watchtower
+      - "com.centurylinklabs.watchtower.enable=true"
+  # gzip compression
+      - "traefik.http.routers.traefik.middlewares=traefik-compress"
+      - "traefik.http.middlewares.traefik-compress.compress=true"
+    networks: 
+        outside-network:
+        internal-network:
+networks:
+  internal-network:
+    internal: true
+  outside-network:
+    external: true

@@ -1,0 +1,45 @@
+# Dynamic Configuration
+http:
+  routers:
+    servicevagrant:
+      entrypoints:
+        - "websecure"
+      service: servicevagrant
+      rule: "Host(`b.unixfree.org`)"
+      tls:
+         certResolver: 
+           - "lets-encr"
+
+  services:
+
+    servicevagrant:
+      loadBalancer:
+        servers:
+          - url: "http://ip:port"
+        passHostHeader: true
+
+tcp:
+  routers:
+    router-ssh:
+      entryPoints:
+        - "websecure"
+      rule: HostSNI(`host.unixfree.org`)
+      service: service-ssh
+      tls:
+       passthrough: true
+
+    curtc001:
+      entryPoints:
+        - "websecure"
+      rule: HostSNI(`host2.unixfree.org`)
+      service: curt001
+
+  services:
+    service-ssh:
+      loadBalancer:
+        servers:
+         - address: "ip:port"
+    curt001:
+      loadBalancer:
+        servers:
+          - address: "ip:port"
