@@ -1,0 +1,29 @@
+version: '3.7'
+
+services: 
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2022-CU10-ubuntu-22.04
+    restart: always
+    ports: 
+      - "1433:1433"  
+    networks:
+      - db_network
+    volumes: 
+     - ./mssql-data/backup:/var/opt/mssql/backups
+     - ./mssql-data/data:/var/opt/mssql/data
+     - ./mssql-data/log:/var/opt/mssql/log
+    environment: 
+      - SA_USER=${SA_USER}
+      - SA_PASSWORD=${SA_PASSWORD}
+      - ACCEPT_EULA= Y
+      - MSSQL_COLLATION=SQL_Latin1_General_Pref_CP850_CI_AS
+      - MSSQL_PID=${mssql_key}
+      - MSSQL_MEMORY_LIMIT_MB=4096
+      - MSSQL_BACKUP_DIR=/var/opt/mssql/backups
+      - MSSQL_DATA_DIR=/var/opt/mssql/data
+      - MSSQL_LOG_DIR=/var/opt/mssql/log
+     #- MSSQL_IP_ADDRESS
+      - MSSQL_AGENT_ENABLED=true #o false
+networks: 
+  db_network:
+    driver: bridge
