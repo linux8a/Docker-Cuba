@@ -1,0 +1,80 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: n8n_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: n8n
+      POSTGRES_USER: n8n_user
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-n8n_secure_password}
+      POSTGRES_NON_ROOT_USER: n8n_user
+      POSTGRES_NON_ROOT_PASSWORD: ${DB_PASSWORD:-n8n_secure_password}
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+    networks:
+      - internal-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U n8n_user -d n8n"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  n8n:
+    image: n8nio/n8n:latest
+    container_name: n8n_app
+    restart: unless-stopped
+    entrypoint: ["n8n"]
+    command: []
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DB_TYPE: postgresdb
+      DB_POSTGRESDB_HOST: postgres
+      DB_POSTGRESDB_PORT: 5432
+      DB_POSTGRESDB_DATABASE: n8n
+      DB_POSTGRESDB_USER: n8n_user
+      DB_POSTGRESDB_PASSWORD: ${DB_PASSWORD:-n8n_secure_password}
+      N8N_HOST: ${N8N_HOST:-n8n.localhost}
+      N8N_PORT: 5678
+      N8N_PROTOCOL: https
+      WEBHOOK_URL: https://${N8N_HOST:-n8n.localhost}
+      N8N_BASIC_AUTH_ACTIVE: "true"
+      N8N_BASIC_AUTH_USER: ${N8N_BASIC_AUTH_USER:-admin}
+      N8N_BASIC_AUTH_PASSWORD: ${N8N_BASIC_AUTH_PASSWORD:-admin_password}
+      N8N_ENCRYPTION_KEY: ${N8N_ENCRYPTION_KEY:-n8n_encryption_key_change_me}
+      
+      GENERIC_TIMEZONE: ${TIMEZONE:-America/New_York}
+      TZ: ${TIMEZONE:-America/New_York}
+      
+      # Additional settings
+      N8N_METRICS: "false"
+      N8N_LOG_LEVEL: info
+      # Execution settings
+      EXECUTIONS_PROCESS: main
+      NODE_ENV: production
+      #sudo chown -R 1000:1000 n8n_data
+      ## Ai
+      #N8N_AI_OPENAI_API_KEY: ${OPENAI_API_KEY}
+      #N8N_AI_ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+      N8N_AI_GOOGLE_GEMINI_API_KEY: ${GEMINI_API_KEY}
+    volumes:
+      - ./n8n_data:/home/node/.n8n
+    networks:
+      - internal-network
+      - outside-network
+    labels:
+      # Traefik configuration
+      - "traefik.enable=true"
+      - "traefik.http.routers.n8n-secure.entrypoints=websecure"
+      - "traefik.http.routers.n8n-secure.rule=Host(`${N8N_HOST:-n8n.localhost}`)"
+      - "traefik.http.routers.n8n-secure.tls.certresolver=lets-encr"
+      - "traefik.http.services.n8n.loadbalancer.server.port=5678"
+      # Network specification
+      - "traefik.docker.network=outside-network"
+
+networks:
+  outside-network:
+    external: true
+  internal-network:
+    external: false
